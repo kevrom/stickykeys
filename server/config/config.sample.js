@@ -10,13 +10,13 @@ var config = {
 			hostname: 'localhost',
 		},
 		database: {
-			name: '',
-			username: '',
-			password: null
+			name: 'nodebp',
+			username: 'steve',
+			password: 'blahblah'
 		},
 		root     : rootPath,
 		app      : {
-			name : ''
+			name : 'SteveDev'
 		},
 		twitterAuth: false,
 		twitter: {
@@ -41,13 +41,13 @@ var config = {
 			hostname: process.env.HOSTNAME || '127.0.0.1',
 		},
 		database: {
-			name: '',
-			username: '',
-			password: null
+			name: 'nodebp',
+			username: 'steve',
+			password: 'blahblah'
 		},
 		root     : rootPath,
 		app      : {
-			name : ''
+			name : 'Steve\'s Music App'
 		},
 		twitterAuth: false,
 		twitter: {
@@ -73,9 +73,9 @@ var config = {
 			hostname: 'localhost',
 		},
 		database: {
-			name: '',
-			username: '',
-			password: null
+			name: 'nodebp_test',
+			username: 'steve',
+			password: 'blahblah'
 		}
 	}
 };

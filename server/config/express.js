@@ -44,7 +44,7 @@ module.exports = function (app, express, passport) {
 		.use(bodyParser())
 		.use(multer())
 		.use(methodOverride())
-		.use(allowCrossDomain);
+		// .use(allowCrossDomain);
 
 	app.use(cookieParser('whoareyouandwhatareyoudoinghere'));
 	app.use(session({

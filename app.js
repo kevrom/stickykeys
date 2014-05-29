@@ -8,16 +8,19 @@ var passport  = require('passport');
 var config    = require(__dirname + '/app/config/config');
 var app       = express();
 
-
+// App configuration
 app.config = config;
 
 // Database
-require('./app/config/database')(app, Sequelize);
-
-var models_path = __dirname + '/app/models';
-fs.readdirSync(models_path).forEach(function (file) {
-	if (~file.indexOf('.js')) require(models_path + '/' + file);
-});
+var db = require('./server/models');
+db
+	.sequelize
+	.sync()
+	.complete(function(err) {
+		if err {
+			throw err[0]
+		}
+	});
 
 // Passport settings
 require('./app/config/passport')(app, passport);

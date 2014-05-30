@@ -11,14 +11,14 @@ var app       = express();
 // App configuration
 app.config = config;
 
-// Database
+// Database initialization
 var db = require('./server/models');
 db
 	.sequelize
 	.sync()
 	.complete(function(err) {
-		if err {
-			throw err[0]
+		if (err) {
+			throw err[0];
 		}
 	});
 

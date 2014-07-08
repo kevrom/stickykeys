@@ -27,6 +27,9 @@ build/Release
 node_modules
 bower_components
 
+# Configuration files
+server/config/config.js
+
 # Temporary VIM files
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]

@@ -23,10 +23,10 @@ db
 	});
 
 // Passport settings
-require('./app/config/passport')(app, passport);
+require('./server/config/passport')(app, passport);
 
 // Express settings
-require('./app/config/express')(app, express, passport);
+require('./server/config/express')(app, express, passport);
 
 
 var server = http.createServer(app)

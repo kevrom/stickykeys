@@ -8,6 +8,7 @@ var favicon        = require('static-favicon');
 var bodyParser     = require('body-parser');
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
+var RedisStore     = require('connect-redis')(session);
 var errorHandler   = require('errorhandler');
 var env            = process.env.NODE_ENV || 'development';
 var views_helpers  = require('../helper/views-helper');
@@ -49,11 +50,7 @@ module.exports = function (app, express, passport) {
 	app.use(cookieParser('whoareyouandwhatareyoudoinghere'));
 	app.use(session({
 		secret: pkg.name,
-		store: new MongoStore({
-			url: app.config.database.url,
-			collection : 'sessions',
-			auto_reconnect: true
-		})
+		store: new RedisStore()
 	}));
 
 	// use passport session
@@ -74,7 +71,7 @@ module.exports = function (app, express, passport) {
 		next();
 	});
 
-	app.use(views_helpers(pkg.name));
+//	app.use(views_helpers(pkg.name));
 	app.use(flash());
 
 	/** ROUTES Apps */

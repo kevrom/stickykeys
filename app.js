@@ -5,7 +5,7 @@ var fs        = require('fs');
 var express   = require('express');
 var Sequelize = require('sequelize');
 var passport  = require('passport');
-var config    = require(__dirname + '/app/config/config');
+var config    = require('./server/config/config');
 var app       = express();
 
 // App configuration

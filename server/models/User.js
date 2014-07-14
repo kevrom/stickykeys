@@ -2,14 +2,14 @@ crypto = require('crypto');
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
-		username = DataTypes.STRING,
-		hashed_password = DataTypes.STRING,
-		name = DataTypes.STRING,
-		email = DataTypes.STRING,
-		provider = DataTypes.STRING,
-		salt = DataTypes.STRING,
-		roles = DataTypes.STRING,
-		isActive = DataTypes.BOOLEAN
+		username: DataTypes.STRING,
+		hashed_password: DataTypes.STRING,
+		name: DataTypes.STRING,
+		email: DataTypes.STRING,
+		provider: DataTypes.STRING,
+		salt: DataTypes.STRING,
+		roles: DataTypes.STRING,
+		isActive: DataTypes.BOOLEAN
 	}, {
 		_password: '',
 		classMethods: {},

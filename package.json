@@ -29,6 +29,7 @@
     "passport-google-oauth": "^0.1.5",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.2",
+    "pg": "^3.4.0",
     "response-time": "^1.0.0",
     "sequelize": "^1.7.4",
     "static-favicon": "^2.0.0-alpha",

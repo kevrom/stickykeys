@@ -18,6 +18,7 @@ var config = {
 		app      : {
 			name : 'SteveDev'
 		},
+		localAuth: true,
 		twitterAuth: false,
 		twitter: {
 			consumerKey: process.env.TWITTER_KEY || '',
@@ -49,6 +50,7 @@ var config = {
 		app      : {
 			name : 'Steve\'s Music App'
 		},
+		localAuth: true,
 		twitterAuth: false,
 		twitter: {
 			// https://apps.twitter.com/app/6070534/keys

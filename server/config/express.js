@@ -11,7 +11,6 @@ var session        = require('express-session');
 var RedisStore     = require('connect-redis')(session);
 var errorHandler   = require('errorhandler');
 var env            = process.env.NODE_ENV || 'development';
-var views_helpers  = require('../helper/views-helper');
 var pkg            = require('../../package.json');
 var flash          = require('express-flash');
 var routes         = require('../routes');
@@ -44,7 +43,7 @@ module.exports = function (app, express, passport) {
 		.use(favicon(path.join(app.config.root, 'public/favicon.png')))
 		.use(bodyParser())
 		.use(multer())
-		.use(methodOverride())
+		.use(methodOverride());
 		// .use(allowCrossDomain);
 
 	app.use(cookieParser('whoareyouandwhatareyoudoinghere'));

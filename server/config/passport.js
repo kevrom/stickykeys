@@ -1,7 +1,7 @@
 var LocalStrategy    = require('passport-local').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var User             = require('../models').User; 
+var User             = require('../models').User;
 
 var config 			 = require('./config');
 

@@ -2,8 +2,10 @@ var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
 var _         = require('lodash');
-var config    = require('../config/config')
-var sequelize = new Sequelize(config.database.name, config.database.username, config.database.password);
+var config    = require('../config/config');
+var sequelize = new Sequelize(config.database.name, config.database.username, config.database.password, {
+	dialect: 'postgres'
+});
 var db        = {};
 
 // Load all models in the models directory

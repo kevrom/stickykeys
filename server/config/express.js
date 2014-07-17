@@ -4,7 +4,7 @@ var responseTime   = require('response-time');
 var methodOverride = require('method-override');
 var multer         = require('multer');
 var compression    = require('compression');
-var favicon        = require('static-favicon');
+var favicon        = require('serve-favicon');
 var bodyParser     = require('body-parser');
 var cookieParser   = require('cookie-parser');
 var session        = require('express-session');
@@ -29,7 +29,7 @@ module.exports = function (app, express, passport) {
 	app
 		.set('env', env)
 		.set('port', app.config.server.port || 3000)
-		.set('views', path.join(__dirname, '../../app/views'))
+		.set('views', path.join(__dirname, '../../server/views'))
 		.set('view engine', 'jade');
 
 	app
@@ -52,7 +52,7 @@ module.exports = function (app, express, passport) {
 	app.use(cookieParser('whoareyouandwhatareyoudoinghere'));
 	app.use(session({
 		secret: pkg.name,
-		saveUnitialized: true,
+		saveUninitialized: true,
 		resave: true,
 		store: new RedisStore()
 	}));
@@ -111,7 +111,7 @@ module.exports = function (app, express, passport) {
 		var err = new Error('Not Found');
 		res.status(404).render('404', {
 			url: req.protocol + '://' + req.headers.host + req.originalUrl,
-			error: 'Page not found !!!'
+			error: 'Page not found!'
 		});
 	});
 

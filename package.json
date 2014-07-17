@@ -1,6 +1,10 @@
 {
   "name": "node-boilerplate",
   "version": "0.0.1",
+  "keywords": [
+    "none",
+    "yet"
+  ],
   "description": "A boilerplate for Node.js/Express.js, Passport.js, Angular, Gulp, and Sequelize",
   "main": "app.js",
   "scripts": {
@@ -32,7 +36,7 @@
     "pg": "^3.4.0",
     "response-time": "^1.0.0",
     "sequelize": "^1.7.4",
-    "static-favicon": "^2.0.0-alpha",
+    "serve-favicon": "^2.0.1",
     "winston": "^0.7.3"
   },
   "devDependencies": {

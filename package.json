@@ -6,6 +6,7 @@
     "yet"
   ],
   "description": "A boilerplate for Node.js/Express.js, Passport.js, Angular, Gulp, and Sequelize",
+  "repository": "git@bitbucket.org:kevrom/node-boilerplate",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -49,7 +50,9 @@
     "gulp-jshint": "^1.7.1",
     "gulp-nodemon": "^1.0.4",
     "gulp-notify": "^1.4.0",
-    "gulp-ruby-sass": "^0.6.0",
-    "mocha": "^1.18.2"
+    "gulp-sass": "^0.7.2",
+    "jshint-stylish": "^0.4.0",
+    "mocha": "^1.18.2",
+    "node-notifier": "^3.0.6"
   }
 }

@@ -1,4 +1,4 @@
-crypto = require('crypto');
+var crypto = require('crypto');
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
@@ -26,8 +26,9 @@ module.exports = function(sequelize, DataTypes) {
 			makeSalt: function() {
 				var set = '0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ';
 				var salt = '';
-				for (var i=0; i<10; i++) {
-					var p = Math.floor(Math.random() * set.length);
+				var i,p;
+				for (i=0; i<10; i++) {
+					p = Math.floor(Math.random() * set.length);
 					salt += set[p];
 				}
 				return salt;
@@ -41,4 +42,4 @@ module.exports = function(sequelize, DataTypes) {
 	});
 
 	return User;
-}
+};

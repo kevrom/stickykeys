@@ -37,3 +37,6 @@ server/config/config.js
 Session.vim
 .netrwhist
 *~
+
+# SASS cache files
+public/sass/.sass-cache

@@ -40,3 +40,7 @@ Session.vim
 
 # SASS cache files
 public/sass/.sass-cache
+
+# Built js/css files
+dist
+build

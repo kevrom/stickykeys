@@ -20,6 +20,14 @@ gulp.task('styles', function() {
 		.pipe(gulp.dest('dist/css'));
 });
 
+gulp.task('bootstrap', function() {
+	return gulp.src('node_modules/bootstrap-sass/assets/stylesheets/bootstrap/bootstrap.scss')
+		.pipe(sass({
+			style: 'expanded'
+		}))
+		.pipe(gulp.dest('dist/lib/bootstrap'));
+});
+
 gulp.task('lint', function() {
 	return gulp.src(jsAssets)
 		.pipe(jshint())
@@ -45,4 +53,4 @@ gulp.task('develop', function() {
 	});
 });
 
-gulp.task('default', ['styles', 'lint', 'develop']);
+gulp.task('default', ['bootstrap', 'styles', 'lint', 'develop']);

@@ -1,1 +1,20 @@
-p Flash.jade
+if messages.success
+	#flash-message
+		.alert.alert-success.animated.fadeIn
+			button.close(type='button', data-dismiss='alert') ×
+			for success in messages.success
+				div= success.msg
+
+if messages.info
+	#flash-message
+		.alert.alert-info.animated.fadeIn
+			button.close(type='button', data-dismiss='alert') ×
+			for info in messages.success
+				div= info.msg
+
+if messages.error
+	#flash-message
+		.alert.alert-error.animated.fadeIn
+			button.close(type='button', data-dismiss='alert') ×
+			for error in messages.success
+				div= error.msg

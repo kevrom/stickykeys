@@ -17,6 +17,7 @@ var routes         = require('../routes');
 var _              = require('lodash');
 
 module.exports = function (app, express, passport) {
+	var config = app.config;
 
 	var allowCrossDomain = function(req, res, next) {
 		res.header("Access-Control-Allow-Origin", "*");
@@ -47,7 +48,10 @@ module.exports = function (app, express, passport) {
 		}))
 		.use(multer())
 		.use(methodOverride());
-		// .use(allowCrossDomain);
+
+	if (config.allowCrossDomain) {
+		app.use(allowCrossDomain);
+	}
 
 	app.use(cookieParser('whoareyouandwhatareyoudoinghere'));
 	app.use(session({
@@ -63,7 +67,7 @@ module.exports = function (app, express, passport) {
 		maxAge: new Date(Date.now() + 3600000)
 	}));
 
-	app.use(express.static(path.join(app.config.root, 'public')));
+	app.use(express.static(path.join(app.config.root, 'dist')));
 	app.use(function (req, res, next) {
 		res.locals.pkg = pkg;
 		res.locals.NODE_ENV = env;

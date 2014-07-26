@@ -13,19 +13,29 @@ var jsAssets = ['app.js', 'gruntfile.js', 'public/js/*.js', 'server/**/*.js'];
 var cssAssets = 'public/sass/*.scss';
 
 gulp.task('styles', function() {
-	return gulp.src('public/sass/main.scss')
+	return gulp.src('./public/sass/main.scss')
 		.pipe(sass({
 			style: 'expanded'
 		}))
 		.pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('bootstrap', function() {
-	return gulp.src('node_modules/bootstrap-sass/assets/stylesheets/bootstrap/bootstrap.scss')
+gulp.task('bootstrap-css', function() {
+	return gulp.src('./node_modules/bootstrap-sass/assets/stylesheets/bootstrap/bootstrap.scss')
 		.pipe(sass({
 			style: 'expanded'
 		}))
-		.pipe(gulp.dest('dist/lib/bootstrap'));
+		.pipe(gulp.dest('./dist/lib/bootstrap'));
+});
+
+gulp.task('bootstrap-js', function() {
+	return gulp.src('./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js')
+		.pipe(gulp.dest('./dist/lib/bootstrap'));
+});
+
+gulp.task('jquery', function() {
+	return gulp.src('./node_modules/jquery/dist/jquery.js')
+		.pipe(gulp.dest('./dist/lib/jquery'));
 });
 
 gulp.task('lint', function() {
@@ -53,4 +63,4 @@ gulp.task('develop', function() {
 	});
 });
 
-gulp.task('default', ['bootstrap', 'styles', 'lint', 'develop']);
+gulp.task('default', ['jquery', 'bootstrap-css', 'bootstrap-js', 'styles', 'lint', 'develop']);

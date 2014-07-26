@@ -9,6 +9,7 @@ var config = {
 			port: 8000,
 			hostname: 'localhost',
 		},
+		allowCrossDomain: false,
 		database: {
 			name: 'nodebp',
 			username: 'steve',
@@ -41,6 +42,7 @@ var config = {
 			port: 8001,
 			hostname: process.env.HOSTNAME || '127.0.0.1',
 		},
+		allowCrossDomain: false,
 		database: {
 			name: 'nodebp',
 			username: 'steve',

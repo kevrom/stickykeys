@@ -22,7 +22,8 @@ var paths = {
 		public: ['./public/js/*.js']
 	},
 	sass: './public/sass/*.scss',
-	img: './public/img/**/*'
+	img: './public/img/**/*',
+	fonts: './public/fonts/**/*'
 };
 
 
@@ -59,6 +60,14 @@ gulp.task('scripts', function() {
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.build + '/js'));
 });
+
+
+// Fonts
+gulp.task('fonts', function() {
+	return gulp.src(paths.fonts)
+		.pipe(gulp.dest(paths.build + '/fonts'));
+});
+
 
 // Bootstrap assets
 gulp.task('bootstrap-css', function() {

@@ -84,6 +84,21 @@ gulp.task('bootstrap-js', function() {
 gulp.task('bootstrap', ['bootstrap-js', 'bootstrap-css']);
 
 
+// Font Awesome
+gulp.task('fontawesome-css', function() {
+	return gulp.src('./public/lib/font-awesome.scss')
+		.pipe(sass({
+			style: 'expanded'
+		}))
+		.pipe(minifyCss())
+		.pipe(gulp.dest(paths.build + '/lib/font-awesome'));
+});
+gulp.task('fontawesome-fonts', function() {
+	return gulp.src('./node_modules/font-awesome/fonts/*')
+		.pipe(gulp.dest(paths.build + '/lib/font-awesome'));
+});
+
+
 // jQuery
 gulp.task('jquery', function() {
 	return gulp.src('./node_modules/jquery/dist/jquery.js')
@@ -113,4 +128,13 @@ gulp.task('develop', function() {
 	});
 });
 
-gulp.task('default', ['jquery', 'bootstrap', 'styles', 'lint', 'develop']);
+gulp.task('default', [
+//	'clean',
+	'jquery',
+	'bootstrap',
+	'fontawesome-css',
+	'fontawesome-fonts',
+	'styles',
+	'lint',
+	'develop'
+]);

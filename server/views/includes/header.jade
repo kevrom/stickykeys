@@ -23,7 +23,15 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 						li
 							a(href='#') Login with your email
 						li.divider
-						li
-							a(href='#') Login with Google
-						li
-							a(href='#') Login with Facebook
+						if googleAuth
+							li
+								a(href='#')
+									img(src='img/google.png', alt='Login with Google')
+						if facebookAuth
+							li
+								a(href='#')
+									img(src='img/facebook.png', alt='Login with Facebook')
+						if twitterAuth
+							li
+								a(href='#')
+									img(src='img/twitter.png', alt='Login with Twitter')

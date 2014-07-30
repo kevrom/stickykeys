@@ -2,3 +2,6 @@ extends layouts/default
 
 block main
 	p Placeholder text
+	p 
+		- var txt = JSON.stringify(config)
+			p= txt

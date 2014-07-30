@@ -33,6 +33,13 @@ var config = {
 			clientSecret: process.env.FACEBOOK_SECRET || '',
 			callbackURL: '/auth/facebook/callback',
 			passReqToCallback: true
+		},
+		googleAuth: false,
+		google: {
+			clientID: process.env.GOOGLE_ID || '',
+			clientSecret: process.env.GOOGLE_SECRET || '',
+			callbackURL: '/auth/google/callback',
+			passReqToCallback: true
 		}
 	},
 

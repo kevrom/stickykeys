@@ -41,12 +41,12 @@ module.exports = function (app, express, passport) {
 
 	// Express middleware
 	app
-		.use(favicon(path.join(app.config.root, 'public/favicon.png')))
+		.use(favicon(path.join(app.config.root, 'public', 'favicon.png')))
 		.use(bodyParser.json())
 		.use(bodyParser.urlencoded({
 			extended: true
 		}))
-		.use(multer())
+		// .use(multer())
 		.use(methodOverride());
 
 	if (config.allowCrossDomain) {
@@ -71,6 +71,7 @@ module.exports = function (app, express, passport) {
 	app.use(function (req, res, next) {
 		res.locals.pkg = pkg;
 		res.locals.NODE_ENV = env;
+		res.locals.config = config;
 
 		if(_.isObject(req.user)) {
 			res.locals.User = req.user;
@@ -102,7 +103,7 @@ module.exports = function (app, express, passport) {
 		app.use(logger());
 		app.use(compression({
 			filter: function (req, res) {
-				return /json|text|javascript|css/.test(res.getHeader('Content-Type'));
+				return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
 			},
 			level: 9
 		}));

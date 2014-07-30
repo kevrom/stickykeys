@@ -62,6 +62,14 @@ gulp.task('scripts', function() {
 });
 
 
+// Images
+gulp.task('images', function() {
+	return gulp.src(paths.img)
+		.pipe(imagemin())
+		.pipe(gulp.dest(paths.build + '/img'));
+});
+
+
 // Fonts
 gulp.task('fonts', function() {
 	return gulp.src(paths.fonts)
@@ -135,6 +143,7 @@ gulp.task('default', [
 	'fontawesome-css',
 	'fontawesome-fonts',
 	'styles',
+	'images',
 	'lint',
 	'develop'
 ]);

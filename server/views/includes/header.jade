@@ -14,24 +14,27 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 					a(href='#') Link 1
 				li
 					a(href='#') Link 2
-			ul.nav.navbar-nav.navbar-right
-				li.dropdown
-					a.dropdown-toggle(href='#', data-toggle='dropdown')
-						| Login&nbsp;
-						span.caret
-					ul.dropdown-menu(role='menu')
-						li
-							a(href='#') Login with your email
-						li.divider
-						if googleAuth
-							li
-								a(href='#')
-									img(src='img/google.png', alt='Login with Google')
-						if facebookAuth
-							li
-								a(href='#')
-									img(src='img/facebook.png', alt='Login with Facebook')
-						if twitterAuth
-							li
-								a(href='#')
-									img(src='img/twitter.png', alt='Login with Twitter')
+			if (config.localAuth || config.googleAuth || config.facebookAuth || config.twitterAuth)
+				ul.nav.navbar-nav.navbar-right
+					li.dropdown
+						a.dropdown-toggle(href='#', data-toggle='dropdown')
+							| Login&nbsp;
+							span.caret
+						ul.dropdown-menu(role='menu')
+							if config.localAuth
+								li
+									a(href='#') Login with your email
+								if (config.googleAuth || config.facebookAuth || config.twitterAuth)
+									li.divider
+							if config.googleAuth
+								li
+									a(href='#')
+										img(src='img/google.png', alt='Login with Google')
+							if config.facebookAuth
+								li
+									a(href='#')
+										img(src='img/facebook.png', alt='Login with Facebook')
+							if config.twitterAuth
+								li
+									a(href='#')
+										img(src='img/twitter.png', alt='Login with Twitter')

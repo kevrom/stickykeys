@@ -41,7 +41,7 @@ module.exports = function (app, express, passport) {
 
 	// Express middleware
 	app
-		.use(favicon(path.join(app.config.root, 'public', 'favicon.png')))
+		.use(favicon(app.config.root + '/public/favicon.png'))
 		.use(bodyParser.json())
 		.use(bodyParser.urlencoded({
 			extended: true

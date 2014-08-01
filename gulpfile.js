@@ -1,17 +1,19 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var imagemin = require('gulp-imagemin');
-var jshint = require('gulp-jshint');
-var uglify = require('gulp-uglify');
-var nodemon = require('gulp-nodemon');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var minifyHtml = require('gulp-minify-html');
-var sourcemaps = require('gulp-sourcemaps');
-var gNotify = require('gulp-notify');
+'use strict';
+
+var gulp         = require('gulp');
+var concat       = require('gulp-concat');
+var imagemin     = require('gulp-imagemin');
+var jshint       = require('gulp-jshint');
+var uglify       = require('gulp-uglify');
+var nodemon      = require('gulp-nodemon');
+var sass         = require('gulp-sass');
+var minifyCss    = require('gulp-minify-css');
+var minifyHtml   = require('gulp-minify-html');
+var sourcemaps   = require('gulp-sourcemaps');
+var rimraf       = require('gulp-rimraf');
+var runSequence  = require('run-sequence');
 var Notification = require('node-notifier');
-var del = require('del');
-var notifier = new Notification();
+var notifier     = new Notification();
 
 // Gulp paths
 var paths = {
@@ -28,8 +30,9 @@ var paths = {
 
 
 // Clean up build directory
-gulp.task('clean', function(cb) {
-	del(['dist'], cb);
+gulp.task('clean', function() {
+	return gulp.src(paths.build, { read: false })
+		.pipe(rimraf());
 });
 
 
@@ -136,14 +139,24 @@ gulp.task('develop', function() {
 	});
 });
 
-gulp.task('default', [
-//	'clean',
-	'jquery',
-	'bootstrap',
-	'fontawesome-css',
-	'fontawesome-fonts',
-	'styles',
-	'images',
-	'lint',
-	'develop'
-]);
+gulp.task('default', function(cb) {
+	runSequence(
+		// clean build directory
+		'clean',
+
+		// run these in parallel
+		[
+			'jquery',
+			'bootstrap',
+			'fontawesome-css',
+			'fontawesome-fonts',
+			'styles',
+			'images',
+			'lint',
+		],
+
+		// start dev server
+		'develop',
+
+		cb);
+});

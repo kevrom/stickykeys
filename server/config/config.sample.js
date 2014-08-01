@@ -1,7 +1,10 @@
-var path = require('path');
-var rootPath = path.normalize(__dirname + '/../..');
+'use strict';
 
-var config = {
+var path     = require('path');
+var rootPath = path.normalize(__dirname + '/../..');
+var config;
+
+config = {
 
 	// Development config
 	development: {
@@ -73,6 +76,13 @@ var config = {
 			clientID: process.env.FACEBOOK_ID || '',
 			clientSecret: process.env.FACEBOOK_SECRET || '',
 			callbackURL: '/auth/facebook/callback',
+			passReqToCallback: true
+		},
+		googleAuth: false,
+		google: {
+			clientID: process.env.GOOGLE_ID || '',
+			clientSecret: process.env.GOOGLE_SECRET || '',
+			callbackURL: '/auth/google/callback',
 			passReqToCallback: true
 		}
 	},

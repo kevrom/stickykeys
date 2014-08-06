@@ -83,7 +83,9 @@ module.exports = function (app, passport) {
 
 			} else {
 				User.findOne({ 'twitter.id_str': profile.id }, function(err, existingUser) {
-					if (existingUser) return done(null, existingUser);
+					if (existingUser) {
+						return done(null, existingUser);
+					}
 					var user = new User();
 					// Twitter will not provide an email address.  Period.
 					// But a person’s twitter username is guaranteed to be unique
@@ -140,7 +142,9 @@ module.exports = function (app, passport) {
 			} else {
 				User.findOne({ 'facebook.id' : profile.id }, function(err, existingUser) {
 
-					if (existingUser) return done(null, existingUser);
+					if (existingUser) {
+						return done(null, existingUser);
+					}
 
 					User.findOne({ email: profile._json.email }, function(err, existingEmailUser) {
 						if (existingEmailUser) {

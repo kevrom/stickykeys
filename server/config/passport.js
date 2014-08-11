@@ -30,7 +30,7 @@ module.exports = function (app, passport) {
 		},
 		function(email, password, done) {
 
-			User.find( { email: email } , function (err, user) {
+			User.find({where:  { email: email }}, function (err, user) {
 
 				if (err) {
 					return done(err);

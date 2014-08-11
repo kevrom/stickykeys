@@ -31,7 +31,7 @@ module.exports = function (app, express, passport) {
 	// settings
 	app
 		.set('env', env)
-		.set('port', app.config.server.port || 3000)
+		.set('port', config.server.port || 3000)
 		.set('views', path.join(__dirname, '../../server/views'))
 		.set('view engine', 'jade');
 
@@ -43,7 +43,7 @@ module.exports = function (app, express, passport) {
 
 	// Express middleware
 	app
-		.use(favicon(app.config.root + '/public/favicon.png'))
+		.use(favicon(config.root + '/public/favicon.png'))
 		.use(bodyParser.json())
 		.use(bodyParser.urlencoded({
 			extended: true

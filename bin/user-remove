@@ -20,5 +20,5 @@ User
 		console.log('User \'' + program.args[0] + '\' deleted.');
 	})
 	.error(function(err) {
-		console.log(err);
+		console.error(err);
 	});

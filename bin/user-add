@@ -12,8 +12,9 @@ var User = require('../server/models').User;
 program
 	.parse(process.argv);
 
-if (!program.args[0] || !program.args[1]) {
-	return console.error('An email and a password must be provided');
+if (!program.args[1]) {
+	console.error('An email and a password must be provided');
+	process.exit();
 }
 
 User
@@ -22,9 +23,15 @@ User
 	})
 	.success(function(user) {
 		user.setPassword(program.args[1]);
-		user.save();
-		console.log('Successfully created new user \'' + user.email + '\'.');
+		user
+			.save()
+			.success(function(user) {
+				console.log('Successfully created new user \'' + user.email + '\'.');
+			})
+			.error(function(err) {
+				console.error(err);
+			});
 	})
 	.error(function(err) {
-		console.log(err);
+		console.error(err);
 	});

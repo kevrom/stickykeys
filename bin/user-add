@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+/*
+	Command-line utility to interact with the User model.
+*/
+
+'use strict';
+
+var program = require('commander');
+var User = require('../server/models').User;
+
+program
+	.parse(process.argv);
+
+if (!program.args[0] || !program.args[1]) {
+	return console.error('An email and a password must be provided');
+}
+
+User
+	.create({
+		email: program.args[0],
+	})
+	.success(function(user) {
+		user.setPassword(program.args[1]);
+		user.save();
+		console.log('Successfully created new user \'' + user.email + '\'.');
+	})
+	.error(function(err) {
+		console.log(err);
+	});

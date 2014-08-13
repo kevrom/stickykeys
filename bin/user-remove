@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+/*
+	Command-line utility to interact with the User model.
+*/
+
+'use strict';
+
+var program = require('commander');
+var User = require('../server/models').User;
+
+program
+	.parse(process.argv);
+
+User
+	.destroy({
+		email: program.args[0]
+	})
+	.success(function(user) {
+		console.log('User \'' + program.args[0] + '\' deleted.');
+	})
+	.error(function(err) {
+		console.log(err);
+	});

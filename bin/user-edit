@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+/*
+	Command-line utility to interact with the User model.
+*/
+
+'use strict';
+
+var program = require('commander');
+var User = require('../server/models').User;
+
+program
+	.option('--name <string>', 'set user\'s name')
+	.option('--active <boolean>', 'set whether user is active or not')
+	.parse(process.argv);
+
+User
+	.update()
+	.success(function(users) {
+		console.log();
+	})
+	.error(function(err) {
+		console.error(err);
+	});
+
+console.log(program.name);
+console.log(program.active);
+console.log(program.args);

@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING
 		},
 		roles: {
-			type: DataTypes.STRING
+			type: DataTypes.ARRAY(DataTypes.STRING)
 		},
 		isActive: {
 			type: DataTypes.BOOLEAN

@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+/*
+	Command-line utility to interact with the User model.
+*/
+
+'use strict';
+
+var program = require('commander');
+var User = require('../server/models').User;
+
+program
+	.option('-a, --add <role>', 'add a role to user')
+	.option('-r, --remove <role>', 'remove a role from user')
+	.parse(process.argv);
+
+/*User*/
+	//.update()
+	//.success(function(users) {
+		//console.log(table.toString());
+	//})
+	//.error(function(err) {
+		//console.error(err);
+	/*});*/
+
+console.log(program.args);

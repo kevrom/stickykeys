@@ -146,13 +146,13 @@ gulp.task('default', function(cb) {
 
 		// run these in parallel
 		[
+			'lint',
 			'jquery',
 			'bootstrap',
 			'fontawesome-css',
 			'fontawesome-fonts',
 			'styles',
-			'images',
-			'lint',
+			'images'
 		],
 
 		// start dev server

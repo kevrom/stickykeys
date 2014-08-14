@@ -11,10 +11,11 @@ var pkg = require('../package.json');
 
 program
 	.version(pkg.version)
-	.command('add [email] [password]', 'Add a new user')
-	.command('edit [email] <flags>', 'Edit an existing user')
-	.command('remove [email]', 'Remove a user')
-	.command('list', 'List all users')
+	.command('add <email> <password>', 'add a new user')
+	.command('edit <email>', 'edit an existing user')
+	.command('remove <email>', 'remove a user')
+	.command('list', 'list all users')
+	.command('role <email>', 'manage user roles')
 	.parse(process.argv);
 
 if (!program.args.length) {

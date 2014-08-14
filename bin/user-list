@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+/*
+	Command-line utility to interact with the User model.
+*/
+
+'use strict';
+
+var program = require('commander');
+var User = require('../server/models').User;
+var Table = require('cli-table');
+
+program
+	.parse(process.argv);
+
+User
+	.findAll()
+	.success(function(users) {
+		var table = new Table({
+			head: ['Email', 'Name'],
+			colWidths: [50, 50]
+		});
+
+		var i;
+		for (i=0; i<users.length; i++) {
+			table.push([users[i].email, (users[i].name) ? users[i].name : '']);
+		}
+
+		console.log(table.toString());
+	})
+	.error(function(err) {
+		console.error(err);
+	});

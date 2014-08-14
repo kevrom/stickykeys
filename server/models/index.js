@@ -6,7 +6,12 @@ var Sequelize = require('sequelize');
 var _         = require('lodash');
 var config    = require('../config/config');
 var sequelize = new Sequelize(config.database.name, config.database.username, config.database.password, {
-	dialect: 'postgres'
+	dialect: 'postgres',
+	logging: false,
+	define: {
+		syncOnAssociation: true,
+		timestamps: true
+	}
 });
 var db        = {};
 

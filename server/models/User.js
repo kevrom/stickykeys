@@ -4,6 +4,16 @@ var crypto = require('crypto');
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
+		id: {
+			type: DataTypes.INTEGER,
+			primaryKey: true,
+			autoIncrement: true
+		},
+		uuid: {
+			type: DataTypes.UUID,
+			unique: true,
+			defaultValue: DataTypes.UUIDV4
+		},
 		username: {
 			type: DataTypes.STRING,
 			allowNull: true,
@@ -61,6 +71,24 @@ module.exports = function(sequelize, DataTypes) {
 				this._password = password;
 				this.salt = this.makeSalt();
 				this.hashed_password = this.encryptPassword(password);
+			},
+			getRoles: function() {
+				return this.roles;
+			},
+			addRole: function(role) {
+				this.roles.push(role);
+				return true;
+			},
+			removeRole: function(role) {
+				var i;
+				for (i=0; i<this.roles.length; i++) {
+					if (this.roles[i] === role) {
+						console.log(i, role);
+
+						return true;
+					}
+				}
+				throw new Error('Role not found');
 			}
 		}
 	});

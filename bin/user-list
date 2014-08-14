@@ -17,13 +17,17 @@ User
 	.findAll()
 	.success(function(users) {
 		var table = new Table({
-			head: ['Email', 'Name'],
-			colWidths: [50, 50]
+			head: ['Email', 'Name', 'Roles'],
+			colWidths: [30, 30, 30]
 		});
 
 		var i;
+		var email, name, roles;
 		for (i=0; i<users.length; i++) {
-			table.push([users[i].email, (users[i].name) ? users[i].name : '']);
+			email = users[i].email;
+			name = users[i].name || '';
+			roles = users[i].roles.join(', ') || '';
+			table.push([email, name, roles]);
 		}
 
 		console.log(table.toString());

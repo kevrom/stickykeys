@@ -10,17 +10,51 @@ var program = require('commander');
 var User = require('../server/models').User;
 
 program
+	.option('-l, --list', 'list all roles for a user')
 	.option('-a, --add <role>', 'add a role to user')
 	.option('-r, --remove <role>', 'remove a role from user')
 	.parse(process.argv);
 
-/*User*/
-	//.update()
-	//.success(function(users) {
-		//console.log(table.toString());
-	//})
-	//.error(function(err) {
-		//console.error(err);
-	/*});*/
+User
+	.find({
+		where: {
+			email: program.args[0]
+		}
+	})
+	.success(function(user) {
+		if (program.list) {
+			console.log(user.getRoles());
+		}
+		if (program.add) {
+			if (!user.roles) {
+				user.roles = [];
+			}
 
-console.log(program.args);
+			try {
+				user.addRole(program.add);
+			}
+			catch (e) {
+				console.log(e);
+			}
+
+			user
+				.save()
+				.success(function(user) {
+					console.log('Successfully added \'' + program.add + '\' to ' + user.email + '\'s roles');
+				})
+				.error(function(err) {
+					console.log(err);
+				});
+		}
+		if (program.remove) {
+			try {
+				user.removeRole(program.remove);
+			}
+			catch (e) {
+				console.log(e);
+			}
+		}
+	})
+	.error(function(err) {
+		console.log(err);
+	});

@@ -35,6 +35,7 @@ User
 			}
 			catch (e) {
 				console.log(e);
+				return;
 			}
 
 			user
@@ -52,7 +53,17 @@ User
 			}
 			catch (e) {
 				console.log(e);
+				return;
 			}
+
+			user
+				.save()
+				.success(function(user) {
+					console.log('Successfully removed \'' + program.remove + '\' from ' + user.email + '\'s roles');
+				})
+				.error(function(err) {
+					console.log(err);
+				});
 		}
 	})
 	.error(function(err) {

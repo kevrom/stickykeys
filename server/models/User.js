@@ -83,8 +83,7 @@ module.exports = function(sequelize, DataTypes) {
 				var i;
 				for (i=0; i<this.roles.length; i++) {
 					if (this.roles[i] === role) {
-						console.log(i, role);
-
+						this.roles.splice(i,1);
 						return true;
 					}
 				}

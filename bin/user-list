@@ -26,7 +26,7 @@ User
 		for (i=0; i<users.length; i++) {
 			email = users[i].email;
 			name = users[i].name || '';
-			roles = users[i].roles.join(', ') || '';
+			roles = (users[i].roles) ? users[i].roles.join(', ') : '';
 			table.push([email, name, roles]);
 		}
 

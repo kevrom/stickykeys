@@ -28,6 +28,7 @@ User
 		catch (err) {
 			return console.error(err);
 		}
+		console.log(user);
 		user
 			.save()
 			.success(function(user) {

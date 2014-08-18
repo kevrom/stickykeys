@@ -55,15 +55,22 @@ module.exports = function(sequelize, DataTypes) {
 					return res;
 				});
 			},
-			setPassword: function(password) {
-				this._password = password;
+			getHash: function(password) {
 				bcrypt.hash(password, 10, function(err, hash) {
 					if (err) {
 						throw new Error('Failed to hash password');
 					}
-					this.hashed_password = hash;
-					return true;
+					return hash;
 				});
+			},
+			setPassword: function(password) {
+				try {
+					this.hashed_password = this.getHash(password);
+				}
+				catch (err) {
+					return console.error(err);
+				}
+				return true;
 			},
 			getRoles: function() {
 				return this.roles;

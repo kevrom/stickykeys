@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
 		uuid: {
 			type: DataTypes.UUID,
 			unique: true,
-			defaultValue: DataTypes.UUIDV4
+			defaultValue: DataTypes.UUIDV1
 		},
 		username: {
 			type: DataTypes.STRING,

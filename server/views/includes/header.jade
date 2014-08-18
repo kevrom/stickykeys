@@ -16,16 +16,23 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 					a(href='#') Link 2
 			if (config.localAuth || config.googleAuth || config.facebookAuth || config.twitterAuth)
 				ul.nav.navbar-nav.navbar-right
+					li
+						a(href='#') Sign Up
 					li.dropdown
 						a.dropdown-toggle(href='#', data-toggle='dropdown')
 							| Login&nbsp;
 							span.caret
 						ul.dropdown-menu(role='menu')
 							if config.localAuth
-								li
-									a(href='#') Login with your email
+								li.dropdown-header Local Login
+								li#login-form
+									form(role='form')
+										.form-group
+											input.form-control(name='email', id='email', type='text', placeholder='E-mail')
+											input.form-control(name='password', id='password', type='password', placeholder='Password')
 								if (config.googleAuth || config.facebookAuth || config.twitterAuth)
 									li.divider
+									li.dropdown-header Social Login
 							if config.googleAuth
 								li
 									a(href='#')

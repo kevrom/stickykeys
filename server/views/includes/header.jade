@@ -28,8 +28,14 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 								li#login-form
 									form(role='form')
 										.form-group
-											input.form-control(name='email', id='email', type='text', placeholder='E-mail')
-											input.form-control(name='password', id='password', type='password', placeholder='Password')
+											.input-group
+												span.input-group-addon
+													i.fa.fa-user
+												input.form-control(name='email', id='email', type='text', placeholder='E-mail')
+											.input-group
+												span.input-group-addon
+													i.fa.fa-lock
+												input.form-control(name='password', id='password', type='password', placeholder='Password')
 								if (config.googleAuth || config.facebookAuth || config.twitterAuth)
 									li.divider
 									li.dropdown-header Social Login

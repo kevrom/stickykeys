@@ -22,7 +22,12 @@ User
 		email: program.args[0],
 	})
 	.success(function(user) {
-		user.setPassword(program.args[1]);
+		try {
+			user.setPassword(program.args[1]);
+		}
+		catch (err) {
+			return console.error(err);
+		}
 		user
 			.save()
 			.success(function(user) {

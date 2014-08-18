@@ -1,6 +1,6 @@
 'use strict';
 
-var crypto = require('crypto');
+var bcrypt = require('bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
@@ -45,32 +45,25 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.BOOLEAN
 		}
 	}, {
-		_password: '',
 		classMethods: {},
 		instanceMethods: {
 			authenticate: function(plainText) {
-				return this.encryptPassword(plainText) === this.hashed_password;
-			},
-			encryptPassword: function(password) {
-				return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
-			},
-			getPassword: function() {
-				return this._password;
-			},
-			makeSalt: function() {
-				var set = '0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ';
-				var salt = '';
-				var i,p;
-				for (i=0; i<10; i++) {
-					p = Math.floor(Math.random() * set.length);
-					salt += set[p];
-				}
-				return salt;
+				return bcrypt.compare(plainText, this.hashed_password, function(err, res) {
+					if (err) {
+						throw new Error('Passwords do not match');
+					}
+					return res;
+				});
 			},
 			setPassword: function(password) {
 				this._password = password;
-				this.salt = this.makeSalt();
-				this.hashed_password = this.encryptPassword(password);
+				bcrypt.hash(password, 10, function(err, hash) {
+					if (err) {
+						throw new Error('Failed to hash password');
+					}
+					this.hashed_password = hash;
+					return true;
+				});
 			},
 			getRoles: function() {
 				return this.roles;

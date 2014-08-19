@@ -20,23 +20,10 @@ if (!program.args[1]) {
 User
 	.create({
 		email: program.args[0],
+		hashed_password: program.args[1]
 	})
 	.success(function(user) {
-		try {
-			user.setPassword(program.args[1]);
-		}
-		catch (err) {
-			return console.error(err);
-		}
-		console.log(user);
-		user
-			.save()
-			.success(function(user) {
-				console.log('Successfully created new user \'' + user.email + '\'.');
-			})
-			.error(function(err) {
-				console.error(err);
-			});
+		console.log('Successfully created user \'' + user.email + '\'');
 	})
 	.error(function(err) {
 		console.error(err);

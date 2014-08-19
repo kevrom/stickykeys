@@ -28,14 +28,12 @@ module.exports = function(sequelize, DataTypes) {
 		email: {
 			type: DataTypes.STRING,
 			primaryKey: true,
+			unique: true,
 			validate: {
 				isEmail: true
 			}
 		},
 		provider: {
-			type: DataTypes.STRING
-		},
-		salt: {
 			type: DataTypes.STRING
 		},
 		roles: {
@@ -55,23 +53,6 @@ module.exports = function(sequelize, DataTypes) {
 					return res;
 				});
 			},
-			getHash: function(password) {
-				bcrypt.hash(password, 10, function(err, hash) {
-					if (err) {
-						throw new Error('Failed to hash password');
-					}
-					return hash;
-				});
-			},
-			setPassword: function(password) {
-				try {
-					this.hashed_password = this.getHash(password);
-				}
-				catch (err) {
-					return console.error(err);
-				}
-				return true;
-			},
 			getRoles: function() {
 				return this.roles;
 			},
@@ -90,6 +71,18 @@ module.exports = function(sequelize, DataTypes) {
 				throw new Error('Role not found');
 			}
 		}
+	});
+
+	User.hook('afterValidate', function(user, fn) {
+		if (!user.changed('hashed_password')) {
+			bcrypt.hash(user.hashed_password, 10, function(err, hash) {
+				if (err) {
+					throw new Error('Failed to hash password');
+				}
+				user.hashed_password = hash;
+			});
+		}
+		fn(null, user);
 	});
 
 	return User;

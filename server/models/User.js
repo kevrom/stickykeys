@@ -46,7 +46,7 @@ module.exports = function(sequelize, DataTypes) {
 		classMethods: {},
 		instanceMethods: {
 			authenticate: function(plainText) {
-				return bcrypt.compare(plainText, this.hashed_password, function(err, res) {
+				bcrypt.compare(plainText, this.hashed_password, function(err, res) {
 					if (err) {
 						throw new Error('Passwords do not match');
 					}

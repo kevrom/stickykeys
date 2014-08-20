@@ -42,7 +42,8 @@
     "passport-twitter": "^1.0.2",
     "pg": "^3.4.0",
     "response-time": "^1.0.0",
-    "sequelize": "^1.7.4",
+    "sequelize": "^1.7.9",
+    "sequelize-cli": "^0.2.4",
     "serve-favicon": "^2.0.1",
     "winston": "^0.7.3"
   },

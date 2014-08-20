@@ -77,7 +77,7 @@ module.exports = function(sequelize, DataTypes) {
 		if (!user.changed('hashed_password')) {
 			bcrypt.hash(user.hashed_password, 10, function(err, hash) {
 				if (err) {
-					throw new Error('Failed to hash password');
+					return fn('Failed to hash password');
 				}
 				user.hashed_password = hash;
 			});

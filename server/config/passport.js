@@ -1,10 +1,10 @@
 'use strict';
 
+var BearerStrategy   = require('passport-http-bearer').Strategy;
 var LocalStrategy    = require('passport-local').Strategy;
 var TwitterStrategy  = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var User             = require('../models').User;
-
 var config 			 = require('./config');
 
 module.exports = function (app, passport) {
@@ -24,24 +24,22 @@ module.exports = function (app, passport) {
 	* Sign in Locally
 	*/
 	if (config.localAuth) {
-		passport.use(new LocalStrategy({
-			usernameField: 'email',
-			passwordField: 'password'
+		passport.use(new BearerStrategy({
 		},
-		function(email, password, done) {
+		function(token, password, done) {
 
-			User.find({where:  { email: email }}, function (err, user) {
+			User.find({where:  { token: token }}, function (err, user) {
 
 				if (err) {
 					return done(err);
 				}
 
 				if (!user) {
-					return done(null, false, { message: 'Your email not register' });
+					return done(null, false, { message: 'User does not exist.' });
 				}
 
 				if (!user.authenticate(password)) {
-					return done(null, false, { message: 'invalid login or password' });
+					return done(null, false, { message: 'Password is incorrect.' });
 				}
 
 				return done(null, user);

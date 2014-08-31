@@ -4,17 +4,9 @@ var express = require('express');
 var Route = express.Router();
 var config = require('../config/config');
 var passport = require('passport');
-var lodash = require('lodash');
-//var Auth = require(config.root + '/app/middleware/authorization');
-var fs = require('fs');
+var Auth = require(config.root + '/server/middleware/auth');
+var userController = require();
 
-//var userController = require(config.root + '/app/controllers/users');
-//var trickController = require(config.root + '/app/controllers/tricks');
-
-var API = {};
-//API.tricks = require(config.root + '/app/controllers/API/tricks');
-//API.Uploader = require(config.root + '/app/controllers/API/uploader');
-//API.Users = require(config.root + '/app/controllers/API/users');
 
 Route.get('/', function(req, res) {
 	res.render('index', {
@@ -23,43 +15,38 @@ Route.get('/', function(req, res) {
 });
 
 // API Routes
-/*Route*/
-	//.all('/api/*', Auth.APIrequiresUserLogin)
-	//.post('/api/trick/create', API.tricks.create)
-	//.get('/api/trick', API.tricks.getAll)
-	//.get('/api/trick/tricks-user', API.tricks.listTrickByUser)
-	//.post('/api/trick/import', API.Uploader.import)
-	//.get('/api/screenshoot', API.tricks.screenShootUrl)
-	//.get('/api/user/current', API.Users.get_profile)
+Route
+	.all('/api/*', Auth.APIrequiresUserLogin);
 
-//// Frontend routes
-//Route
-	//.get('/login', userController.login)
-	//.get('/signup', userController.signup)
-	//.get('/logout', userController.logout)
-	//.get('/forgot-password', userController.getForgotPassword)
-	//.post('/forgot-password',Auth.hasLogin, userController.postForgotPassword)
-	//.get('/reset/:token', Auth.hasLogin, userController.getResetPassword)
-	//.post('/reset/:token', Auth.hasLogin, userController.postResetPassword)
-	//.post('/users/create', userController.create)
-	//.get('/dashboard', Auth.requiresLogin, userController.show)
-	//.post('/users/session',
-		//passport.authenticate('local', {
-		//failureRedirect: '/login',
-		//failureFlash: true
-	//}), userController.session)
-	//.get('/auth/twitter', passport.authenticate('twitter'))
-	//.get('/auth/twitter/callback',
-		//passport.authenticate('twitter',{
-		//failureRedirect: '/login' }), function(req, res) {
-		//res.redirect(req.session.returnTo || '/');
-	//})
-	//.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }))
-	//.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-		//res.redirect(req.session.returnTo || '/');
-	//})
-	//.get('/trick/create', Auth.requiresLogin, trickController.create)
-	//.get('/:username/tricks', Auth.requiresLogin, trickController.myTrick)
-	/*.get('/:username', userController.user_profile)*/
+// Frontend routes
+Route
+	.get('/login', userController.login)
+	.get('/signup', userController.signup)
+	.get('/logout', userController.logout)
+	.get('/forgot-password', userController.getForgotPassword)
+	.post('/forgot-password',Auth.requireAnon, userController.postForgotPassword)
+	.get('/reset/:token', Auth.requireAnon, userController.getResetPassword)
+	.post('/reset/:token', Auth.requireAnon, userController.postResetPassword)
+	.post('/users/create', userController.create)
+	.get('/dashboard', Auth.requireLogin, userController.show)
+	.get('/:username', userController.user_profile);
 
-module.exports = Route; 
+if (config.twitterAuth) {
+	Route
+		.get('/auth/twitter', passport.authenticate('twitter'))
+		.get('/auth/twitter/callback',
+			passport.authenticate('twitter',{
+			failureRedirect: '/login' }), function(req, res) {
+			res.redirect(req.session.returnTo || '/');
+		});
+}
+
+if (config.facebookAuth) {
+	Route
+		.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }))
+		.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
+			res.redirect(req.session.returnTo || '/');
+		});
+}
+
+module.exports = Route;

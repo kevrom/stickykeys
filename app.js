@@ -3,9 +3,7 @@
 // Module dependencies
 var path      = require('path');
 var http      = require('http');
-var fs        = require('fs');
 var express   = require('express');
-var Sequelize = require('sequelize');
 var passport  = require('passport');
 var config    = require('./server/config/config');
 var app       = express();

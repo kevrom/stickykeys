@@ -66,7 +66,7 @@ module.exports = function (app, express, passport) {
 	// use passport session
 	app.use(passport.initialize());
 	app.use(passport.session({
-		maxAge: new Date(Date.now() + 3600000)
+		maxAge: new Date(Date.now() + 86400000)
 	}));
 
 	app.use(express.static(path.join(app.config.root, 'dist')));

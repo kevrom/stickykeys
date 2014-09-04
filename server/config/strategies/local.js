@@ -1,27 +1,45 @@
 'use strict';
 
-var BearerStrategy   = require('passport-http-bearer').Strategy;
-var User             = require('../models').User;
+var LocalStrategy = require('passport-local').Strategy;
+var User          = require('../../models').User;
 
 module.exports = function(passport) {
-	passport.use(new BearerStrategy({
+	passport.serializeUser(function(user, done) {
+		done(null, user.id);
+	});
+
+	passport.deserializeUser(function(id, done) {
+		User
+			.find({ where: { id: id }})
+			.success(function(user) {
+				console.log('Deserialize: ' + user);
+				done(null, user);
+			})
+			.error(function(err) {
+				console.log('Error deserializing user');
+				done(err, null);
+			});
+	});
+
+	passport.use(new LocalStrategy({
 		passReqToCallback: true
 	},
-	function(req, token, done) {
+	function(req, email, password, done) {
 
 		console.log(req);
 
-		User.find({where:  { token: token }}, function (err, user) {
-
-			if (err) {
+		User
+			.find({ where:  { email: email }})
+			.success(function(user) {
+				if (!user.authenticate(password)) {
+					return done(null, false, { message: 'Password is incorrect.' });
+				}
+				return done(null, user);
+			})
+			.error(function(err) {
+				console.error(err);
 				return done(err);
-			}
-
-			if (!user) {
-				return done(null, false, { message: 'User does not exist.' });
-			}
-
-			return done(null, user);
-		});
+				//return done(null, false, { message: 'User does not exist.' });
+			});
 	}));
 };

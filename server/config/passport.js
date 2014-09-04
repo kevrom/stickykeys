@@ -1,7 +1,5 @@
 'use strict';
 
-var User             = require('../models').User;
-
 module.exports = function (app, passport) {
 
 	/*

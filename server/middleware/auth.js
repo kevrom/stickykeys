@@ -3,7 +3,7 @@
 var passport = require('passport');
 var Auth = {};
 
-Auth.requireAnon = function(req, res, next) {
+Auth.requiresAnon = function(req, res, next) {
 	if (req.isAuthenticated()) {
 		res.redirect('/');
 	} else {
@@ -11,7 +11,7 @@ Auth.requireAnon = function(req, res, next) {
 	}
 };
 
-Auth.requireLogin = function(req, res, next) {
+Auth.requiresLogin = function(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
 	}

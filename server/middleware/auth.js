@@ -3,6 +3,7 @@
 var passport = require('passport');
 var Auth = {};
 
+// URLs that require user to be logged out
 Auth.requiresAnon = function(req, res, next) {
 	if (req.isAuthenticated()) {
 		res.redirect('/');
@@ -11,6 +12,7 @@ Auth.requiresAnon = function(req, res, next) {
 	}
 };
 
+// URLs that require user to be logged in
 Auth.requiresLogin = function(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
@@ -21,6 +23,7 @@ Auth.requiresLogin = function(req, res, next) {
 	res.redirect('/login');
 };
 
+// API URLs that require user to be logged in
 Auth.APIrequiresLogin = function(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();

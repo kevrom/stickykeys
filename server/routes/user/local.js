@@ -3,8 +3,8 @@
 var Route = require('express').Router();
 var passport = require('passport');
 var config = require('../../config/config');
-var Auth = require(config.root + '/middleware/auth');
-var userController = require(config.root + '/controllers/user/index');
+var Auth = require(config.root + '/server/middleware/auth');
+var userController = require(config.root + '/server/controllers/user/index');
 
 Route
 	.get('/login', userController.login.get)
@@ -12,7 +12,7 @@ Route
 		failureRedirect: '/login',
 		failureFlash: true
 	}), userController.login.post)
-	.get('/register', userController.register)
+	.get('/register', userController.register.get)
 	.get('/logout', userController.logout);
 	//.get('/forgot-password', userController.getForgotPassword)
 	//.post('/forgot-password',Auth.requiresAnon, userController.postForgotPassword)

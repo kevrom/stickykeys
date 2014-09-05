@@ -1,22 +1,11 @@
 'use strict';
 
-var express = require('express');
-var Route = express.Router();
+var Route = require('express').Router();
 var config = require('../config/config');
-var passport = require('passport');
 var Auth = require(config.root + '/server/middleware/auth');
-var userController = require();
+var indexController = require(config.root + '/server/controllers');
 
-
-Route.get('/', function(req, res) {
-	res.render('index', {
-		title: 'Express 4'
-	});
-});
-
-// API Routes
-Route
-	.all('/api/*', Auth.APIrequireLogin);
+Route.get('/', indexController.index);
 
 // User routes
 require('./user');

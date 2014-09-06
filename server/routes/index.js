@@ -8,8 +8,7 @@ var indexController = require(config.root + '/server/controllers');
 Route.get('/', indexController.index);
 
 // User routes
-require('./user');
-
+Route.use(require('./user'));
 
 
 module.exports = Route;

@@ -1,23 +1,26 @@
 'use strict';
 
+var Route = require('express').Router();
 var config = require('../../config/config');
 
 if (config.localAuth) {
 	// bring in local auth routes
-	require('./local');
+	Route.use(require('./local'));
 }
 
 if (config.twitterAuth) {
 	// bring in twitter auth routes
-	require('./twitter');
+	Route.use(require('./twitter'));
 }
 
 if (config.facebookAuth) {
 	// bring in facebook auth routes
-	require('./facebook');
+	Route.use(require('./facebook'));
 }
 
 if (config.googleAuth) {
 	// bring in google auth routes
-	require('./google');
+	Route.use(require('./google'));
 }
+
+module.exports = Route;

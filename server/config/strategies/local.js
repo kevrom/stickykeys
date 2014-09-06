@@ -5,6 +5,7 @@ var User          = require('../../models').User;
 
 module.exports = function(passport) {
 	passport.serializeUser(function(user, done) {
+		console.log('Serialize: ' + user);
 		done(null, user.id);
 	});
 
@@ -22,19 +23,20 @@ module.exports = function(passport) {
 	});
 
 	passport.use(new LocalStrategy({
-		passReqToCallback: true
+		usernameField: 'email',
+		passwordField: 'password',
 	},
-	function(req, email, password, done) {
-
-		console.log(req);
-
+	function(email, password, done) {
 		User
 			.find({ where:  { email: email }})
 			.success(function(user) {
-				if (!user.authenticate(password)) {
-					return done(null, false, { message: 'Password is incorrect.' });
-				}
-				return done(null, user);
+				user.authenticate(password, function(err, res) {
+					if (err) {
+						console.log('Invalid password');
+						return done(null, false, { message: 'Password is incorrect.' });
+					}
+					return done(null, user);
+				});
 			})
 			.error(function(err) {
 				console.error(err);

@@ -15,8 +15,8 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 				li
 					a(href='#') Link 2
 
-			// Check to see of any Auth strategies are used.  If so, display the Signup/Login buttons
-			if (config.localAuth || config.googleAuth || config.facebookAuth || config.twitterAuth)
+			// Check to see if no user or any Auth strategies are used.  If so, display the Signup/Login buttons
+			if (!User && config.localAuth || config.googleAuth || config.facebookAuth || config.twitterAuth)
 				ul.nav.navbar-nav.navbar-right
 					li
 						a(href='#') Sign Up
@@ -30,7 +30,7 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 							if config.localAuth
 								li.dropdown-header Local Login
 								li#login-form
-									form(role='form')
+									form(role='form', action='/login', method='post')
 										.form-group
 											.input-group
 												span.input-group-addon
@@ -40,6 +40,8 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 												span.input-group-addon
 													i.fa.fa-lock
 												input.form-control(name='password', id='password', type='password', placeholder='Password')
+											.input-group
+												button.btn.btn-default(type='submit') Sign In
 
 								// Check for the other Auth strategies since they are separate from local Auth
 								if (config.googleAuth || config.facebookAuth || config.twitterAuth)
@@ -63,3 +65,10 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 								li
 									a(href='#')
 										img(src='img/twitter.png', alt='Login with Twitter')
+
+			else
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href='#') #{User.email}
+					li
+						a(href='/logout') Logout

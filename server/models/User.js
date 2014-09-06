@@ -45,12 +45,9 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		classMethods: {},
 		instanceMethods: {
-			authenticate: function(plainText) {
+			authenticate: function(plainText, cb) {
 				bcrypt.compare(plainText, this.hashed_password, function(err, res) {
-					if (err) {
-						throw new Error('Passwords do not match');
-					}
-					return res;
+					return cb(err, res);
 				});
 			},
 			getRoles: function() {
@@ -74,12 +71,13 @@ module.exports = function(sequelize, DataTypes) {
 	});
 
 	User.hook('afterValidate', function(user, fn) {
-		if (!user.changed('hashed_password')) {
+		if (user.changed('hashed_password')) {
 			bcrypt.hash(user.hashed_password, 10, function(err, hash) {
 				if (err) {
 					return fn('Failed to hash password');
 				}
 				user.hashed_password = hash;
+				return fn(null, user);
 			});
 		}
 		fn(null, user);

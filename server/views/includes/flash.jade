@@ -9,12 +9,12 @@ if messages.info
 	#flash-message
 		.alert.alert-info.animated.fadeIn
 			button.close(type='button', data-dismiss='alert') ×
-			for info in messages.success
+			for info in messages.info
 				div= info.msg
 
 if messages.error
 	#flash-message
 		.alert.alert-error.animated.fadeIn
 			button.close(type='button', data-dismiss='alert') ×
-			for error in messages.success
+			for error in messages.error
 				div= error.msg

@@ -32,6 +32,10 @@ module.exports = function(passport) {
 			.success(function(user) {
 				user.authenticate(password, function(err, res) {
 					if (err) {
+						console.error(err);
+						return done(err, null);
+					}
+					if (!res) {
 						console.log('Invalid password');
 						return done(null, false, { message: 'Password is incorrect.' });
 					}

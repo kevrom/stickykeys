@@ -11,7 +11,8 @@ Route
 	.post('/login', passport.authenticate('local', {
 		successRedirect: '/',
 		failureRedirect: '/login',
-		failureFlash: true
+		failureFlash: true,
+		successFlash: 'Successfully logged in.'
 	}), UserController.login.post)
 	.get('/register', UserController.register.get)
 	.get('/logout', UserController.logout);

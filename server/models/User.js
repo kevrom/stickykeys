@@ -1,6 +1,8 @@
 'use strict';
 
 var bcrypt = require('bcrypt');
+var Promise = require('bluebird');
+var hash = Promise.promisify(bcrypt.hash);
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
@@ -45,9 +47,18 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		classMethods: {},
 		instanceMethods: {
+			_password: '',
 			authenticate: function(plainText, cb) {
 				bcrypt.compare(plainText, this.hashed_password, function(err, res) {
 					return cb(err, res);
+				});
+			},
+			hashPassword: function() {
+				return hash(this._password, 10).then(function(err, hash) {
+					if (err) {
+						throw new Error('Failed to hash password');
+					}
+					return this.setDataValue('hashed_password', hash);
 				});
 			},
 			getRoles: function() {
@@ -70,18 +81,18 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 
-	User.hook('afterValidate', function(user, fn) {
-		if (user.changed('hashed_password')) {
-			bcrypt.hash(user.hashed_password, 10, function(err, hash) {
-				if (err) {
-					return fn('Failed to hash password');
-				}
-				user.hashed_password = hash;
-				return fn(null, user);
-			});
-		}
-		fn(null, user);
-	});
+	//User.hook('afterValidate', function(user, fn) {
+		//if (user.changed('hashed_password')) {
+			//bcrypt.hash(user.hashed_password, 10, function(err, hash) {
+				//if (err) {
+					//return fn('Failed to hash password');
+				//}
+				//user.hashed_password = hash;
+				//return fn(null, user);
+			//});
+		//}
+		//fn(null, user);
+	//});
 
 	return User;
 };

@@ -18,10 +18,12 @@ if (!program.args[1]) {
 }
 
 User
-	.create({
+	.build({
 		email: program.args[0],
-		hashed_password: program.args[1]
+		_password: program.args[1]
 	})
+	.hashPassword()
+	.save()
 	.success(function(user) {
 		console.log('Successfully created user \'' + user.email + '\'');
 	})

@@ -21,7 +21,7 @@ UserController.login = {
 
 UserController.register = {
 	get: function(req, res) {
-		console.log('register');
+		res.render('user/register', {});
 	},
 	post: function(req, res) {
 		console.log('registerpost');

@@ -66,8 +66,8 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation')
 									a(href='#')
 										img(src='img/twitter.png', alt='Login with Twitter')
 
-			//- If User is logged
-			else
+			//- If User is logged in
+			if User
 				ul.nav.navbar-nav.navbar-right
 					li
 						a(href='#') #{User.email}

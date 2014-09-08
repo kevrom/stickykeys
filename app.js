@@ -2,18 +2,18 @@
 
 // Module dependencies
 var path      = require('path');
-var http      = require('http');
 var express   = require('express');
 var passport  = require('passport');
 var config    = require('./server/config/config');
 var app       = express();
+var http      = require('http').Server(app);
+var io        = require('socket.io')(http);
 
 // App configuration
 app.config = config;
 
 // Database initialization
-var db = require('./server/models');
-db
+require('./server/models')
 	.sequelize
 	.sync()
 	.complete(function(err) {
@@ -29,7 +29,7 @@ require('./server/config/passport')(app, passport);
 require('./server/config/express')(app, express, passport);
 
 
-var server = http.createServer(app)
+http
 	.listen(app.get('port'), config.server.hostname, function (err) {
 
 		if (err) {
@@ -38,11 +38,10 @@ var server = http.createServer(app)
 
 		console.log("\n✔ Express server listening on port %d in %s mode", app.get('port'), app.get('env'));
 
+	})
+	.on('error', function (err) {
+		console.error('✗ '+ app.get('port') + err);
+		// TODO: do something with the error
 	});
-
-server.on('error', function (err) {
-	console.error('✗ '+ app.get('port') + err);
-	// TODO: do something with the error
-});
 
 module.exports = app;

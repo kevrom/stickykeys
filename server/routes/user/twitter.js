@@ -1,6 +1,6 @@
 'use strict';
 
-var Route = require('express').Router();
+var Route    = require('express').Router();
 var passport = require('passport');
 
 Route

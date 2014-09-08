@@ -1,4 +1,4 @@
 'use strict';
 
-var GoogleStrategy   = require('passport-google-oauth');
-var User             = require('../models').User;
+var GoogleStrategy = require('passport-google-oauth');
+var User           = require('../models').User;

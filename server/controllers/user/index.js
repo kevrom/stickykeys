@@ -1,6 +1,6 @@
 'use strict';
 
-var passport = require('passport');
+var passport       = require('passport');
 var UserController = {};
 
 UserController.index = function(req, res) {

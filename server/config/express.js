@@ -76,7 +76,6 @@ module.exports = function (app, express, passport) {
 		res.locals.config = config;
 
 		if(_.isObject(req.user)) {
-			console.log(req.user);
 			res.locals.User = req.user;
 		}
 		next();

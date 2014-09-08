@@ -1,6 +1,6 @@
 'use strict';
 
-var Route = require('express').Router();
+var Route  = require('express').Router();
 var config = require('../../config/config');
 
 if (config.localAuth) {

@@ -1,7 +1,7 @@
 'use strict';
 
 var passport = require('passport');
-var Auth = {};
+var Auth     = {};
 
 // URLs that require user to be logged out
 Auth.requiresAnon = function(req, res, next) {

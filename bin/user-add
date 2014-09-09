@@ -19,14 +19,16 @@ if (!program.args[1]) {
 
 User
 	.build({
-		email: program.args[0],
-		_password: program.args[1]
+		email: program.args[0]
 	})
-	.hashPassword()
-	.save()
-	.success(function(user) {
-		console.log('Successfully created user \'' + user.email + '\'');
-	})
-	.error(function(err) {
-		console.error(err);
+	.hashPassword(program.args[1], function(err, user) {
+		user
+			.save()
+			.success(function(user) {
+				console.log('Successfully created user \'' + user.email + '\'');
+			})
+			.error(function(err) {
+				console.error(err);
+			});
 	});
+

@@ -116,6 +116,12 @@ gulp.task('jquery', function() {
 		.pipe(gulp.dest(paths.build + '/lib/jquery'));
 });
 
+// Socket.IO
+gulp.task('socket.io', function() {
+	return gulp.src('./node_modules/socket.io-client/socket.io.js')
+		.pipe(gulp.dest(paths.build + '/lib/socket.io'));
+});
+
 
 // Watch function
 gulp.task('watch', function() {
@@ -147,10 +153,12 @@ gulp.task('default', function(cb) {
 		// run these in parallel
 		[
 			'lint',
+			'scripts',
 			'jquery',
 			'bootstrap',
 			'fontawesome-css',
 			'fontawesome-fonts',
+			'socket.io',
 			'styles',
 			'images'
 		],

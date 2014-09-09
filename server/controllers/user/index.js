@@ -15,7 +15,7 @@ UserController.login = {
 		// req.session.returnTo is set in Auth middleware
 		var redirect = req.session.returnTo || '/';
 		delete req.session.returnTo;
-		res.redirectTo(redirect);
+		res.redirect(redirect);
 	}
 };
 

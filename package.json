@@ -48,6 +48,7 @@
     "sequelize-cli": "^0.2.4",
     "serve-favicon": "^2.0.1",
     "socket.io": "^1.1.0",
+    "socket.io-client": "^1.1.0",
     "winston": "^0.7.3"
   },
   "devDependencies": {

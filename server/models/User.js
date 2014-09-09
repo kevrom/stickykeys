@@ -60,9 +60,22 @@ module.exports = function(sequelize, DataTypes) {
 			getRoles: function() {
 				return this.roles;
 			},
+			checkRole: function(role) {
+				var i;
+				for (i=0; i<this.roles.length; i++) {
+					if (this.roles[i] === role) {
+						return true;
+					}
+				}
+				return false;
+			},
 			addRole: function(role) {
-				this.roles.push(role);
-				return true;
+				if (!this.checkRole(role)) {
+					throw new Error('User already has this role.');
+				} else {
+					this.roles.push(role);
+					return true;
+				}
 			},
 			removeRole: function(role) {
 				var i;
@@ -76,19 +89,6 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
-
-	//User.hook('afterValidate', function(user, fn) {
-		//if (user.changed('hashed_password')) {
-			//bcrypt.hash(user.hashed_password, 10, function(err, hash) {
-				//if (err) {
-					//return fn('Failed to hash password');
-				//}
-				//user.hashed_password = hash;
-				//return fn(null, user);
-			//});
-		//}
-		//fn(null, user);
-	//});
 
 	return User;
 };

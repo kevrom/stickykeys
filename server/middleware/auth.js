@@ -35,4 +35,13 @@ Auth.APIrequiresLogin = function(req, res, next) {
 	return res.json(200, err);
 };
 
+Auth.authenticate = function(req, res, next) {
+	passport.authenticate('local', {
+		successRedirect: '/',
+		failureRedirect: '/login',
+		failureFlash: true,
+		successFlash: 'Successfully logged in.'
+	})(req, res, next);
+};
+
 module.exports = Auth;

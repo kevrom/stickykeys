@@ -1,8 +1,8 @@
 'use strict';
 
 var Promise = require('bluebird');
-var bcrypt = require('bcrypt');
-var hash = Promise.promisify(bcrypt.hash);
+var bcrypt  = require('bcrypt');
+var hash    = Promise.promisify(bcrypt.hash);
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
@@ -54,9 +54,13 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			hashPassword: function(plainText, cb) {
 				var self = this;
-				hash(plainText, 10).then(function(hash) {
-					self.hashed_password = hash;
-				});
+				hash(plainText, 10)
+					.error(function(err) {
+						throw new Error(err);
+					})
+					.then(function(hash) {
+						self.hashed_password = hash;
+					});
 				return self;
 			},
 			getRoles: function() {

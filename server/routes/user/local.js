@@ -7,13 +7,8 @@ var Auth           = require(config.root + '/server/middleware/auth');
 var UserController = require(config.root + '/server/controllers/user/index');
 
 Route
-	.get('/login', UserController.login.get)
-	.post('/login', passport.authenticate('local', {
-		successRedirect: '/',
-		failureRedirect: '/login',
-		failureFlash: true,
-		successFlash: 'Successfully logged in.'
-	}), UserController.login.post)
+	.get('/login', Auth.requiresAnon, UserController.login.get)
+	.post('/login', Auth.authenticate, UserController.login.post)
 	.get('/register', UserController.register.get)
 	.get('/logout', UserController.logout);
 	//.get('/forgot-password', UserController.forgotPassword.get)

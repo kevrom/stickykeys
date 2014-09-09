@@ -28,6 +28,9 @@ require('./server/config/passport')(app, passport);
 // Express settings
 require('./server/config/express')(app, express, passport);
 
+// Socket.IO
+require('./server/socket')(io);
+
 
 http
 	.listen(app.get('port'), config.server.hostname, function (err) {

@@ -1,8 +1,8 @@
 'use strict';
 
-var Promise = require('bluebird');
-var bcrypt  = require('bcrypt');
-var hash    = Promise.promisify(bcrypt.hash);
+var bluebird = require('bluebird');
+var bcrypt   = require('bcrypt');
+var hash     = bluebird.promisify(bcrypt.hash);
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {

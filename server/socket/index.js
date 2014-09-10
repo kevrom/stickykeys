@@ -2,8 +2,8 @@
 
 module.exports = function(io) {
 
-	io.on('connection', function(socket) {
+	//io.on('connection', function(socket) {
 
-	});
+	//});
 
 };

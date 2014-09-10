@@ -10,5 +10,8 @@ Route.get('/', indexController.index);
 // User routes
 Route.use(require('./user'));
 
+// Admin routes
+Route.use('/admin', require('./admin'));
+
 
 module.exports = Route;

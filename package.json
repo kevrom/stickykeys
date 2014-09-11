@@ -1,12 +1,12 @@
 {
-  "name": "node-boilerplate",
+  "name": "Sticky Keys",
   "version": "0.0.1",
   "keywords": [
     "none",
     "yet"
   ],
-  "description": "A boilerplate for Node.js/Express.js, Passport.js, Angular, Gulp, and Sequelize",
-  "repository": "git@bitbucket.org:kevrom/node-boilerplate",
+  "description": "Website for Sticky Keys, LLC",
+  "repository": "git@bitbucket.org:kevrom/stickykeys",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

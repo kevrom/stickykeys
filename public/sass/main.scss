@@ -15,18 +15,17 @@
 
 footer {
 	color: white;
-	background-color: rgb(0,0,0);
-	background-color: rgba(0,0,0,0.8);
-	margin-top: 10px;
-	padding: 15px;
+	background-color: #303030;
+	padding: 35px;
 }
 
 body {
 	padding-top: 80px;
-	background-image: url('/img/hexellence_@2X.png');
+	background-color: #E5E5E5;
 }
 
 nav {
+	border-bottom: 3px solid #9CAD6B !important;
 	opacity: 0.7;
 }
 
@@ -48,11 +47,18 @@ nav {
 	text-decoration: none;
 }
 
-.jumbotron {
+#headerJumbo {
 	background: none;
 	h1 {
 		text-align: center;
 	}
+}
+
+#formContainer {
+	background: #9CAD6B;
+	margin-top: 50px;
+	padding: 15px;
+	border-top: 1px solid #303030;
 }
 
 h2 {
@@ -65,4 +71,26 @@ h2 {
 
 .border-left {
 	border-left: 1px solid rgb(150, 150, 150);
+}
+
+.employee-block {
+	padding: 15px;
+}
+
+.employee-container {
+	border-right: 1px solid rgb(215, 215, 215);
+}
+
+.address-container {
+	padding-left: 30px;
+}
+
+p {
+	text-align: justify;
+}
+
+.copyright {
+	color: #FFFFFF;
+	background-color: #1D1D1D;
+	padding: 10px;
 }

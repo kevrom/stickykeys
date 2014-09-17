@@ -1,11 +1,41 @@
 footer
 	.container
-		p Sticky Keys is a local company made up of two Houma natives.
-		.col-md-6
-			img(src='http://www.placecage.com/200/200')
-			p Michael Chauvin
-			small Hardware
-		.col-md-6
-			img(src='http://www.placecage.com/200/200')
-			p Kevin Romano
-			small Web Design/Software
+		.row
+			.col-md-6.employee-container
+				.row.employee-block
+					.col-md-6
+						.pull-right
+							img.img-circle(src='/img/mike.png')
+					.col-md-6
+						div
+							h4 Michael Chauvin
+								br
+								small Hardware / Maintenance
+				.row.employee-block
+					.col-md-6
+						.pull-right
+							h4 Kevin Romano
+								br
+								small Web Design / Software
+					.col-md-6
+						div
+							img.img-circle(src='/img/kevin.png')
+
+			.col-md-6.address-container
+				h2 About Us
+				p Sticky Keys is a local computer repair and web design company, owned and operated by two Houma natives.  We've been in business since 2011, and hope to continue to provide Houma with the best support that we can for many more years.
+				address
+					h3 Sticky Keys, LLC
+					h4
+						| Houma, LA
+						br
+						abbr(title='Phone') P:
+						| &nbsp;
+						a(href='tel:9853603463') 985-360-3463
+
+				p Go ahead and like us on Facebook to keep up with our goings-on.
+				.fb-like(data-href='http://facebook.com/stickykeys', data-layout='button_count', data-action='like', data-show-faces='false', data-share='false')
+
+.container-fluid.copyright
+	.pull-right
+		| &copy; 2014 Sticky Keys, LLC.  All rights reserved.

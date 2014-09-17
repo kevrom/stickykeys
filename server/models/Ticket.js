@@ -40,6 +40,10 @@ module.exports = function(sequelize, DataTypes) {
 		problem: {
 			type: DataTypes.TEXT,
 			allowNull: false
+		},
+		resolved: {
+			type: DataTypes.BOOLEAN,
+			defaultValue: false
 		}
 	}, {
 		classMethods: {

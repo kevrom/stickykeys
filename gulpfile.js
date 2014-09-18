@@ -145,7 +145,26 @@ gulp.task('develop', function() {
 	});
 });
 
-gulp.task('default', function(cb) {
+gulp.task('build', function() {
+	runSequence(
+		// clean build directory
+		'clean',
+
+		// run these in parallel
+		[
+			'lint',
+			'scripts',
+			'jquery',
+			'bootstrap',
+			'fontawesome-css',
+			'fontawesome-fonts',
+			'socket.io',
+			'styles',
+			'images'
+		]);
+});
+
+gulp.task('default', function() {
 	runSequence(
 		// clean build directory
 		'clean',
@@ -164,7 +183,9 @@ gulp.task('default', function(cb) {
 		],
 
 		// start dev server
-		'develop',
-
-		cb);
+		'develop'
+		);
 });
+
+
+

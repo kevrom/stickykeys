@@ -145,7 +145,7 @@ gulp.task('develop', function() {
 	});
 });
 
-gulp.task('default', function(cb) {
+gulp.task('default', function() {
 	runSequence(
 		// clean build directory
 		'clean',
@@ -164,7 +164,6 @@ gulp.task('default', function(cb) {
 		],
 
 		// start dev server
-		'develop',
-
-		cb);
+		'develop'
+	);
 });

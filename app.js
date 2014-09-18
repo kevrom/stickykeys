@@ -6,8 +6,8 @@ var express   = require('express');
 var passport  = require('passport');
 var config    = require('./server/config/config');
 var app       = express();
-var http      = require('http').Server(app);
-var io        = require('socket.io')(http);
+var server    = require('http').Server(app);
+var io        = require('socket.io')(server);
 
 // App configuration
 app.config = config;
@@ -32,7 +32,7 @@ require('./server/config/express')(app, express, passport);
 require('./server/socket')(io);
 
 
-http
+server
 	.listen(app.get('port'), config.server.hostname, function (err) {
 
 		if (err) {

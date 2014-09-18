@@ -102,3 +102,28 @@ p {
 .facebook-link:hover {
 	text-decoration: none;
 }
+
+.mobile-header {
+	margin: 0px;
+	padding: 0px;
+	div {
+		margin: 0px;
+		padding: 0px;
+	}
+	img {
+		margin-top: 4px;
+	}
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+.phone-mobile {
+	font-size: 1.3em;
+	line-height: 48px;
+}
+
+.phone-tablet {
+	font-size: 3em;
+	line-height: 100px;
+}

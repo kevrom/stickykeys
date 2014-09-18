@@ -1,9 +1,16 @@
 {
-  "name": "sticky keys",
+  "name": "stickykeys",
   "version": "0.0.1",
   "keywords": [
-    "none",
-    "yet"
+    "sticky",
+    "keys",
+	"computer",
+	"repair",
+	"support",
+	"IT",
+	"broken",
+	"website",
+	"design"
   ],
   "description": "Website for Sticky Keys, LLC",
   "repository": "git@bitbucket.org:kevrom/stickykeys",

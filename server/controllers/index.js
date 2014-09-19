@@ -8,4 +8,8 @@ IndexController.index = function(req, res) {
 	});
 };
 
+IndexController.ticket = function(req, res) {
+	console.log(req.body);
+};
+
 module.exports = IndexController;

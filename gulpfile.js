@@ -184,8 +184,5 @@ gulp.task('default', function() {
 
 		// start dev server
 		'develop'
-		);
+	);
 });
-
-
-

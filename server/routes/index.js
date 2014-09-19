@@ -6,6 +6,7 @@ var Auth            = require(config.root + '/server/middleware/auth');
 var indexController = require(config.root + '/server/controllers');
 
 Route.get('/', indexController.index);
+Route.post('/ticket', indexController.ticket);
 
 // User routes
 Route.use(require('./user'));

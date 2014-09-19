@@ -6,7 +6,7 @@ block main
 			h1
 				em Introducing
 			.col-md-6
-				img(src='img/logo.png', width='100%')
+				img(src='img/logo.png', width='100%', alt='Sticky Keys to Go Logo')
 			.col-md-6
 				h3 Computer repair that comes to you.  We're changing things up.  We got rid of our office and office hours.  We're committed to fitting into your schedule, so you don't have to worry about ours.
 
@@ -32,23 +32,23 @@ block main
 		.center-block
 			h2 Contact Us
 		.col-md-4.col-md-offset-4
-			form#ticketForm(role='form')
+			form#ticketForm(role='form', method='post', action='/ticket')
 				.form-group
 					label(for='fullName') Your Name
-					input#fullName.form-control(type='text', placeholder='John Hancock')
+					input#fullName.form-control(type='text', name='fullName', placeholder='John Hancock')
 				.form-group
 					label(for='email') Your E-mail Address
-					input#email.form-control(type='email', placeholder='john@hancock.com')
+					input#email.form-control(type='email', name='email', placeholder='john@hancock.com')
 				.form-group
 					label(for='phone') Your Phone Number
-					input#phone.form-control(type='tel', placeholder='555-525-8000')
+					input#phone.form-control(type='tel', name='phone', placeholder='555-525-8000')
 				.checkbox
 					label
-						input(type='checkbox')
+						input(type='checkbox', name='allowEmail')
 						| I would like to receive e-mails from Sticky Keys regarding open tickets or future promotions.
 				.form-group
 					label(for='problem') What's the problem?
-					textarea#problem.form-control
+					textarea#problem.form-control(name='problem')
 				.form-group
 					button.btn(type='submit') Submit it!
 

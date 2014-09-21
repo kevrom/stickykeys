@@ -45,6 +45,7 @@ IndexController.ticket = function(req, res) {
 		});
 	}
 
+	data.allowEmail = (data.allowEmail) ? true : false;
 	var ticketEmail = new Emailer(supportEmailOptions, data);
 	ticketEmail.send(function(err, info) {
 		if (err) { console.error(err); }

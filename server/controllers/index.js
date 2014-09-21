@@ -12,9 +12,10 @@ IndexController.index = function(req, res) {
 };
 
 IndexController.ticket = function(req, res) {
+	var data = req.body;
 	var customerEmailOptions = {
 		template: 'customer',
-		subject: 'Sticky Keys Appointment',
+		subject: 'Request for Support',
 		to: {
 			name: req.body.fullName,
 			email: req.body.email
@@ -28,8 +29,6 @@ IndexController.ticket = function(req, res) {
 			email: 'support@sticky-keys.com'
 		}
 	};
-	var emailData = req.body;
-	console.log(req.body);
 
 	//Ticket.create({
 		//name: req.body.fullName,
@@ -39,19 +38,19 @@ IndexController.ticket = function(req, res) {
 		//problem: req.body.problem
 	//});
 
-	if (req.body.allowEmail) {
-		var customerEmail = new Emailer(customerEmailOptions, emailData);
+	if (data.allowEmail) {
+		var customerEmail = new Emailer(customerEmailOptions, data);
 		customerEmail.send(function(err, info) {
 			if (err) { console.error(err); }
 		});
 	}
 
-	var ticketEmail = new Emailer(supportEmailOptions, emailData);
+	var ticketEmail = new Emailer(supportEmailOptions, data);
 	ticketEmail.send(function(err, info) {
 		if (err) { console.error(err); }
 	});
 
-	req.flash('success', 'Thanks for contacting us.  We will get back with you as soon as possible.');
+	req.flash('success', 'Thanks for contacting us, ' + data.fullName + '.  We will get back with you as soon as possible.');
 	res.redirect('/');
 };
 

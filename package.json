@@ -12,7 +12,7 @@
     "website",
     "design"
   ],
-  "description": "Website for Sticky Keys, LLC",
+  "description": "Sticky Keys is a computer repair and website design company based out of Houma, LA",
   "repository": "git@bitbucket.org:kevrom/stickykeys",
   "main": "app.js",
   "scripts": {
@@ -43,6 +43,7 @@
     "method-override": "^1.0.2",
     "morgan": "^1.0.1",
     "multer": "0.0.7",
+    "nodemailer": "^1.3.0",
     "passport": "^0.2.0",
     "passport-facebook": "^1.0.3",
     "passport-google-oauth": "^0.1.5",

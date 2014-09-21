@@ -13,7 +13,7 @@
     "design"
   ],
   "description": "Sticky Keys is a computer repair and website design company based out of Houma, LA",
-  "repository": "git@bitbucket.org:kevrom/stickykeys",
+  "repository": "https://github.com/kevrom/stickykeys",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

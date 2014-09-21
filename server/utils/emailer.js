@@ -7,6 +7,7 @@ var config = require('../config/config');
 
 /*
  * A class for building an email template with specified options and data
+ * This class requires the email settings in the config file located at /server/config/config.js
  *
  * @constructor
  * @param {Object} [options] A hash of options to define email behavior
@@ -41,7 +42,7 @@ Emailer.prototype.getHTML = function(templateName, data) {
 Emailer.prototype.send = function(cb) {
 	var html = this.getHTML(this.options.template, this.data);
 	this.getTransport().sendMail({
-		from: config.email.address,
+		from: '"' + config.email.name + '" <' + config.email.address + '>',
 		to: '"' + this.options.to.name + '" <' + this.options.to.email + '>',
 		subject: this.options.subject,
 		html: html,

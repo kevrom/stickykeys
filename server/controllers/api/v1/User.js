@@ -6,7 +6,7 @@ var Ticket = models.Ticket;
 var Customer = models.Customer;
 var ModelAPI = require('./Model');
 
-var CustomerAPI = new ModelAPI('Customer');
+var UserAPI = new ModelAPI('User');
 
 
-module.exports = CustomerAPI;
+module.exports = UserAPI;

@@ -1,4 +1,17 @@
-extends ../layouts/default
+extends ./default
 
 block main
-	p Admin view
+	.container-fluid
+		.row
+			.col-md-2
+				.side-nav
+					ul
+						li: a(href='#') Open Tickets
+						li: a(href='#') Closed Tickets
+						li: a(href='#') All Tickets
+						li: a(href='#') Customers
+						li: a(href='#') Jobs
+			.col-md-10
+				.container
+					each ticket in tickets
+						p= ticket.name

@@ -1,0 +1,33 @@
+.navbar {
+	margin: 0;
+}
+
+.container-fluid {
+	padding: 0 15px 0 0;
+}
+
+.side-nav {
+	background: #f8f8f8;
+	height: 100%;
+	border-right: 1px solid #E7E7E7;
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		a {
+			color: #777;
+			display: block;
+			margin: 0;
+			padding: 15px;
+			border-bottom: 1px solid #E7E7E7;
+		}
+		a:hover {
+			background: darken(#E7E7E7, 1%);
+			text-decoration: none;
+		}
+	}
+}
+
+#loginForm {
+	width: 600px;
+}

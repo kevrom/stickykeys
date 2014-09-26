@@ -1,5 +1,7 @@
 'use strict';
 
+var config     = require('../config/config');
+
 module.exports = function(sequelize, DataTypes) {
 	var Ticket = sequelize.define('Ticket', {
 		id: {
@@ -17,9 +19,11 @@ module.exports = function(sequelize, DataTypes) {
 				isEmail: true
 			}
 		},
-		time_requested: {
+		time: {
 			type: DataTypes.DATE,
-			allowNull: false
+		},
+		date: {
+			type: DataTypes.DATE
 		},
 		phone: {
 			type: DataTypes.STRING,
@@ -44,14 +48,27 @@ module.exports = function(sequelize, DataTypes) {
 		resolved: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
+		},
+		labor: {
+			type: DataTypes.TEXT
+		},
+		parts: {
+			type: DataTypes.TEXT
+		},
+		labor_price: {
+			type: DataTypes.STRING
+		},
+		parts_price: {
+			type: DataTypes.STRING
 		}
 	}, {
 		classMethods: {
 			associate: function(models) {
-				Ticket.belongsTo(models.Job);
+				Ticket.belongsTo(models.Customer);
 			}
 		},
-		insanceMethods: {}
+		insanceMethods: {},
+		hooks: {}
 	});
 
 	return Ticket;

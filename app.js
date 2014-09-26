@@ -16,7 +16,7 @@ app.config = config;
 require('./server/models')
 	.sequelize
 	.sync()
-	.complete(function(err) {
+	.complete(function(err, res) {
 		if (err) {
 			throw err[0];
 		}

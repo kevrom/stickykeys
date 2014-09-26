@@ -37,7 +37,7 @@ Auth.APIrequiresLogin = function(req, res, next) {
 
 Auth.authenticate = function(req, res, next) {
 	passport.authenticate('local', {
-		successRedirect: '/',
+		successRedirect: '/admin',
 		failureRedirect: '/login',
 		failureFlash: true,
 		successFlash: 'Successfully logged in.'

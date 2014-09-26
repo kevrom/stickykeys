@@ -1,4 +1,15 @@
-extends ../layouts/default
+extends ../admin/default
 
 block main
-	p login view
+	.container
+		#loginForm.panel.panel-primary.center-block
+			.panel-heading Please Login
+			.panel-body
+				form(role='form', method='POST', action='/login')
+					.form-group
+						label(for='email') Email Address
+						input.form-control(type='email', name='email', placeholder='E-mail Address')
+					.form-group
+						label(for='password') Password
+						input.form-control(type='password', name='password', placeholder='Password')
+					button.btn.btn-default(type='submit') Login

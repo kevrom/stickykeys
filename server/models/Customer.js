@@ -57,7 +57,7 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 		classMethods: {
 			associate: function(models) {
-				Customer.hasMany(models.Job);
+				Customer.hasMany(models.Ticket);
 			}
 		},
 		instanceMethods: {}

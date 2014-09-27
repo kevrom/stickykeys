@@ -19,15 +19,14 @@ Route.route('/api/*')
 Route.param('template', /^[a-zA-Z0-9-_]+$/);
 Route.get('/partials/:template', AdminController.partial);
 
-// All admin routes go to index
-Route.route('/*')
-	.all(Auth.requiresLogin)
-	.get(AdminController.index);
-
-
+// Load the routes from the API controllers
 Route.use('/api/v1/users', CustomerAPI.getRoutes());
 Route.use('/api/v1/tickets', TicketAPI.getRoutes());
 Route.use('/api/v1/customers', CustomerAPI.getRoutes());
 
+// All other admin routes go to index
+Route.route('/*')
+	.all(Auth.requiresLogin)
+	.get(AdminController.index);
 
 module.exports = Route;

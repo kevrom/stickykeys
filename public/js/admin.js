@@ -1,12 +1,13 @@
 'use strict';
 
 var angular = require('angular');
+require('./services/admin-resources');
+require('./controllers');
 
-angular.module('admin', ['ui.router'])
+angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 	.constant('API_CONFIG', {
 		API_KEY: '',
-		BASE_URL: '/api/v1/',
-		DB_NAME: 'shopkeeper'
+		BASE_URL: '/admin/api/v1/'
 	})
 	.run(['$rootScope', '$state', '$stateParams',
 		function($rootScope, $state, $stateParams) {
@@ -28,18 +29,25 @@ angular.module('admin', ['ui.router'])
 					template: '<ui-view/>'
 				})
 
-				// Home
-				.state('home', {
-					url: '/home',
+				// Users
+				.state('user', {
+					url: '/users',
 					parent: 'root',
-					template: '<div>This is the home state</div>'
+					template: '<div>This is the user state</div>'
 				})
 
-				// About
-				.state('about', {
-					url: '/about',
+				// Customers
+				.state('customer', {
+					url: '/customers',
 					parent: 'root',
-					template: '<div>This is the about state</div>'
+					template: '<div>This is the customer state</div>'
+				})
+
+				// Tickets
+				.state('ticket', {
+					url: '/tickets',
+					parent: 'root',
+					template: '<div>This is the ticket state</div>'
 				});
 
 		}

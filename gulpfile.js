@@ -22,7 +22,7 @@ var paths = {
 	js: {
 		all: ['./app.js', './gruntfile.js', './public/js/*.js', './server/**/*.js'],
 		server: ['./app.js', './gruntfile.js', './server/**/*.js'],
-		public: ['./public/js/*.js']
+		public: ['./public/js/**/*.js']
 	},
 	sass: './public/sass/*.scss',
 	img: './public/img/**/*',

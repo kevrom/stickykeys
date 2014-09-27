@@ -6,10 +6,10 @@ block main
 			.col-md-2
 				.side-nav
 					ul
-						li: a(ui-sref='home') Open Tickets
-						li: a(ui-sref='about') Closed Tickets
-						li: a(href='#') All Tickets
-						li: a(href='#') Customers
-						li: a(href='#') Jobs
+						li: a(ui-sref='ticket', ng-class='{ active: $state.includes("ticket") }') Open Tickets
+						li: a(ui-sref='ticket') Closed Tickets
+						li: a(ui-sref='ticket') All Tickets
+						li: a(ui-sref='customer', ng-class='{ active: $state.includes("customer") }') Customers
+						li: a(ui-sref='user', ng-class='{ active: $state.includes("user") }') Users
 			.col-md-10
 				.container(ui-view)

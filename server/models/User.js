@@ -54,13 +54,9 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			hashPassword: function(plainText, cb) {
 				var self = this;
-				hash(plainText, 10)
-					.error(function(err) {
-						throw new Error(err);
-					})
-					.then(function(hash) {
-						self.hashed_password = hash;
-					});
+				var salt = bcrypt.genSaltSync(10);
+				var hash = bcrypt.hashSync(plainText, salt);
+				self.hashed_password = hash;
 				return self;
 			},
 			getRoles: function() {

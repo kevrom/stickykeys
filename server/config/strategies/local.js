@@ -28,6 +28,9 @@ module.exports = function(passport) {
 		User
 			.find({ where:  { email: email }})
 			.success(function(user) {
+				if (!user) {
+					return done(null, false, { message: 'Invalid e-mail address.' });
+				}
 				user.authenticate(password, function(err, res) {
 					if (err) {
 						console.error(err);

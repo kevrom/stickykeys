@@ -6,10 +6,10 @@ block main
 			.col-md-2
 				.side-nav
 					ul
-						li: a(href='#') Open Tickets
-						li: a(href='#') Closed Tickets
+						li: a(ui-sref='home') Open Tickets
+						li: a(ui-sref='about') Closed Tickets
 						li: a(href='#') All Tickets
 						li: a(href='#') Customers
 						li: a(href='#') Jobs
 			.col-md-10
-				.container
+				.container(ui-view)

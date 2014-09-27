@@ -128,6 +128,7 @@ gulp.task('socket.io', function() {
 gulp.task('watch', function() {
 	gulp.watch(paths.sass, ['styles']);
 	gulp.watch(paths.js.all, ['lint']);
+	gulp.watch(paths.js.public, ['scripts']);
 });
 
 

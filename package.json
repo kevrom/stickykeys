@@ -36,6 +36,7 @@
     "errorhandler": "^1.0.1",
     "express": "^4.1.2",
     "express-flash": "0.0.2",
+    "express-params": "0.0.3",
     "express-session": "^1.1.0",
     "express-validator": "^2.1.2",
     "font-awesome": "^4.1.0",
@@ -84,10 +85,12 @@
     "vinyl-transform": "0.0.1"
   },
   "browserify": {
-    "transform": ["browserify-shim"]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "jquery": "global:$",
-	"angular": "global:angular"
+    "angular": "global:angular"
   }
 }

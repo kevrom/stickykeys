@@ -5,17 +5,14 @@ var Ticket = require(config.root + '/server/models').Ticket;
 var AdminController = {};
 
 AdminController.index = function(req, res) {
-	Ticket
-		.findAll()
-		.success(function(tickets) {
-			res.render('admin/index', {
-				title: 'Administration',
-				tickets: tickets
-			});
-		})
-		.error(function(err) {
-			console.error(err);
-		});
+	res.render('admin/index', {
+		title: 'Administration',
+	});
+};
+
+AdminController.partial = function(req, res) {
+	var template = 'admin/partials/' + req.params.template;
+	res.render(template);
 };
 
 module.exports = AdminController;

@@ -2,9 +2,6 @@
 
 var config = require('../../../config/config');
 var models = require(config.root + '/server/models');
-var Ticket = models.Ticket;
-var Customer = models.Customer;
-var User = models.User;
 
 function Model(model, routeString) {
 	this.model = model;

@@ -1,7 +1,8 @@
 'use strict';
 
 var gulp         = require('gulp');
-var concat       = require('gulp-concat');
+var browserify   = require('browserify');
+var transform    = require('vinyl-transform');
 var imagemin     = require('gulp-imagemin');
 var jshint       = require('gulp-jshint');
 var uglify       = require('gulp-uglify');
@@ -56,12 +57,12 @@ gulp.task('lint', function() {
 
 // Javascript assets pipeline
 gulp.task('scripts', function() {
-	return gulp.src(paths.js.public)
-		.pipe(sourcemaps.init())
-		.pipe(uglify())
-		.pipe(concat('main.min.js'))
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(paths.build + '/js'));
+	var browserified = transform(function(file) {
+		return browserify(file).bundle();
+	});
+	return gulp.src(['./public/js/main.js', './public/js/admin.js'])
+		.pipe(browserified)
+		.pipe(gulp.dest('./dist/bundles/'));
 });
 
 

@@ -1,1 +1,7 @@
-p This is the customer list state
+div(ng-controller='CustomerListCtrl')
+	.panel.panel-primary(ng-repeat='customer in customers')
+		.panel-heading {{ customer.full_name }}
+		.panel-body
+			p Email: {{ user.email }}
+			p Roles: 
+				span(ng-repeat='role in user.roles') {{ role }} 

@@ -1,1 +1,4 @@
-p This is the ticket list state
+div(ng-controller='TicketListCtrl')
+	.panel(ng-repeat='ticket in tickets')
+		.panel-header {{ ticket.name }}
+		.panel-body {{ ticket.problem }}

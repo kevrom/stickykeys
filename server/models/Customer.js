@@ -30,16 +30,10 @@ module.exports = function(sequelize, DataTypes) {
 		zip_code: {
 			type: DataTypes.STRING
 		},
-		phone1: {
+		phone_primary: {
 			type: DataTypes.STRING
 		},
-		phone1_type: {
-			type: DataTypes.STRING
-		},
-		phone2: {
-			type: DataTypes.STRING
-		},
-		phone2_type: {
+		phone_seconday: {
 			type: DataTypes.STRING
 		},
 		email: {
@@ -60,7 +54,12 @@ module.exports = function(sequelize, DataTypes) {
 				Customer.hasMany(models.Ticket);
 			}
 		},
-		instanceMethods: {}
+		instanceMethods: {},
+		getterMethods: {
+			full_name: function() {
+				return this.first_name + ' ' + this.last_name;
+			}
+		}
 	});
 
 	return Customer;

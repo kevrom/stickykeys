@@ -24,10 +24,10 @@ function Model(model, routeString) {
 		return models[model]
 			.findAll()
 				.success(function(objs) {
-					res.send(objs, 200);
+					res.status(200).send(objs);
 				})
 				.error(function(err) {
-					res.send(err, 500);
+					res.status(500).send(err);
 				});
 	};
 
@@ -39,10 +39,10 @@ function Model(model, routeString) {
 				}
 			})
 			.success(function(obj) {
-				res.send(obj, 200);
+				res.status(200).send(obj);
 			})
 			.error(function(err) {
-				res.send(err, 500);
+				res.status(500).send(err);
 			});
 	};
 
@@ -50,10 +50,10 @@ function Model(model, routeString) {
 		return models[model]
 			.create(req.body)
 			.success(function(obj) {
-				res.send(obj, 200);
+				res.status(200).send(obj);
 			})
 			.error(function(err) {
-				res.send(err, 500);
+				res.status(500).send(err);
 			});
 	};
 
@@ -67,14 +67,14 @@ function Model(model, routeString) {
 			.success(function(obj) {
 				obj.updateAttributes(req.body)
 					.success(function(obj) {
-						res.send(obj, 200);
+						res.status(200).send(obj);
 					})
 					.error(function(err) {
-						res.send(err, 500);
+						res.status(500).send(err);
 					});
 			})
 			.error(function(err) {
-				res.send(err, 500);
+				res.status(500).send(err);
 			});
 	};
 
@@ -88,14 +88,14 @@ function Model(model, routeString) {
 			.success(function(obj) {
 				obj.destroy()
 					.success(function() {
-						res.send(200);
+						res.status(200);
 					})
 					.error(function(err) {
-						res.send(err, 500);
+						res.status(500).send(err);
 					});
 			})
 			.error(function(err) {
-				res.send(err, 500);
+				res.status(500).send(err);
 			});
 	};
 }

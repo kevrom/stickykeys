@@ -35,14 +35,13 @@ module.exports = function(sequelize, DataTypes) {
 				isEmail: true
 			}
 		},
-		provider: {
-			type: DataTypes.STRING
-		},
 		roles: {
-			type: DataTypes.ARRAY(DataTypes.STRING)
+			type: DataTypes.ARRAY(DataTypes.STRING),
+			defaultValue: []
 		},
 		isActive: {
-			type: DataTypes.BOOLEAN
+			type: DataTypes.BOOLEAN,
+			defaultValue: false
 		}
 	}, {
 		classMethods: {},
@@ -62,7 +61,7 @@ module.exports = function(sequelize, DataTypes) {
 			getRoles: function() {
 				return this.roles;
 			},
-			checkRole: function(role) {
+			hasRole: function(role) {
 				var i;
 				for (i=0; i<this.roles.length; i++) {
 					if (this.roles[i] === role) {
@@ -72,7 +71,7 @@ module.exports = function(sequelize, DataTypes) {
 				return false;
 			},
 			addRole: function(role) {
-				if (!this.checkRole(role)) {
+				if (this.hasRole(role)) {
 					throw new Error('User already has this role.');
 				} else {
 					this.roles.push(role);

@@ -1,0 +1,7 @@
+div(ng-controller='UserListCtrl')
+	.panel.panel-primary(ng-repeat='user in users')
+		.panel-heading {{ user.name }}
+		.panel-body
+			p Email: {{ user.email }}
+			p Roles: 
+				span(ng-repeat='role in user.roles') {{ role }} 

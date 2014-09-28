@@ -39,8 +39,7 @@ Auth.authenticate = function(req, res, next) {
 	passport.authenticate('local', {
 		successRedirect: '/admin',
 		failureRedirect: '/login',
-		failureFlash: true,
-		successFlash: 'Successfully logged in.'
+		failureFlash: true
 	})(req, res, next);
 };
 

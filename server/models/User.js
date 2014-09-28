@@ -37,7 +37,6 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		roles: {
 			type: DataTypes.ARRAY(DataTypes.STRING),
-			defaultValue: []
 		},
 		isActive: {
 			type: DataTypes.BOOLEAN,

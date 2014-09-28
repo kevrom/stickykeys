@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true,
 			unique: true
 		},
-		hashed_password: {
+		hashedPassword: {
 			type: DataTypes.STRING
 		},
 		name: {
@@ -47,7 +47,7 @@ module.exports = function(sequelize, DataTypes) {
 		classMethods: {},
 		instanceMethods: {
 			authenticate: function(plainText, cb) {
-				bcrypt.compare(plainText, this.hashed_password, function(err, res) {
+				bcrypt.compare(plainText, this.hashedPassword, function(err, res) {
 					return cb(err, res);
 				});
 			},
@@ -55,7 +55,7 @@ module.exports = function(sequelize, DataTypes) {
 				var self = this;
 				var salt = bcrypt.genSaltSync(10);
 				var hash = bcrypt.hashSync(plainText, salt);
-				self.hashed_password = hash;
+				self.hashedPassword = hash;
 				return self;
 			},
 			getRoles: function() {

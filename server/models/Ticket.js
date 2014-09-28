@@ -29,15 +29,15 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		wants_notification: {
+		wantsNotification: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
 		},
-		allow_email: {
+		allowEmail: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
 		},
-		allow_text: {
+		allowText: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
 		},
@@ -55,10 +55,10 @@ module.exports = function(sequelize, DataTypes) {
 		parts: {
 			type: DataTypes.TEXT
 		},
-		labor_price: {
+		laborPrice: {
 			type: DataTypes.STRING
 		},
-		parts_price: {
+		partsPrice: {
 			type: DataTypes.STRING
 		}
 	}, {

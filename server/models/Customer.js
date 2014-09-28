@@ -7,11 +7,11 @@ module.exports = function(sequelize, DataTypes) {
 			primaryKey: true,
 			autoIncrement: true
 		},
-		first_name: {
+		firstName: {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		last_name: {
+		lastName: {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
@@ -27,13 +27,13 @@ module.exports = function(sequelize, DataTypes) {
 		state: {
 			type: DataTypes.STRING
 		},
-		zip_code: {
+		zipCode: {
 			type: DataTypes.STRING
 		},
-		phone_primary: {
+		phonePrimary: {
 			type: DataTypes.STRING
 		},
-		phone_seconday: {
+		phoneSeconday: {
 			type: DataTypes.STRING
 		},
 		email: {
@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
 				isEmail: true
 			}
 		},
-		referred_by: {
+		referredBy: {
 			type: DataTypes.STRING
 		},
 		notes: {
@@ -56,8 +56,8 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		instanceMethods: {},
 		getterMethods: {
-			full_name: function() {
-				return this.first_name + ' ' + this.last_name;
+			fullName: function() {
+				return this.firstName + ' ' + this.lastName;
 			}
 		}
 	});

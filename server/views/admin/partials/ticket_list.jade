@@ -1,4 +1,3 @@
-div(ng-controller='TicketListCtrl')
-	.panel(ng-repeat='ticket in tickets')
-		.panel-header {{ ticket.name }}
-		.panel-body {{ ticket.problem }}
+.panel(ng-repeat='ticket in tickets')
+	.panel-header {{ ticket.name }}
+	.panel-body {{ ticket.problem }}

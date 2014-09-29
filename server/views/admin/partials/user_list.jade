@@ -1,7 +1,11 @@
-div(ng-controller='UserListCtrl')
-	.panel.panel-primary(ng-repeat='user in users')
-		.panel-heading {{ user.name }}
-		.panel-body
-			p Email: {{ user.email }}
-			p Roles: 
-				span(ng-repeat='role in user.roles') {{ role }} 
+.button-link
+	a.btn.btn-default(ui-sref='users.create') Create a User
+.panel.panel-primary(ng-repeat='user in users')
+	.panel-heading
+		a.edit-icon(ui-sref='users.edit({ userId: user.id })')
+			i.fa.fa-pencil-square-o(title='Edit')
+		| {{ user.name }}
+	.panel-body
+		p Email: {{ user.email }}
+		p Roles: 
+			span(ng-repeat='role in user.roles') {{ role }} 

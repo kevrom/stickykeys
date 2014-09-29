@@ -7,4 +7,8 @@ UserCtrl.list = ['users', '$scope', '$stateParams', function(users, $scope, $sta
 	$scope.users = users;
 }];
 
+UserCtrl.edit = ['user', '$scope', '$stateParams', function(user, $scope, $stateParams) {
+	$scope.user = user;
+}];
+
 module.exports = UserCtrl;

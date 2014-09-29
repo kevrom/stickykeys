@@ -18,77 +18,136 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 
 			$stateProvider
 
-				// Root
-				.state('root', {
-					abstract: true,
-					url: '/admin',
-					template: '<ui-view/>'
-				})
-
 				// Users
 				.state('users', {
-					url: '/users',
-					parent: 'root',
-					templateUrl: '/admin/partials/user_list',
+					url: '/admin/users',
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/user_list',
+							controller: 'UserListCtrl'
+						}
+					},
 					resolve: {
 						users: ['Users', function(Users) {
 							return Users.getList().$object;
 						}]
 					}
 				})
-				.state('users.edit', {
-					url: '/:id',
-					parent: 'users',
-					templateUrl: '/admin/partials/user_edit'
-				})
 				.state('users.create', {
 					url: '/new',
 					parent: 'users',
-					templateUrl: '/admin/partials/user_edit'
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/user_edit',
+							controller: 'UserEditCtrl'
+						}
+					},
+					resolve: {
+						user: function() { return {}; }
+					}
+				})
+				.state('users.edit', {
+					url: '/:userId',
+					parent: 'users',
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/user_edit',
+							controller: 'UserEditCtrl'
+						}
+					},
+					resolve: {
+						user: ['Users', '$stateParams', function(Users, $stateParams) {
+							return Users.one($stateParams.userId).get();
+						}]
+					}
 				})
 
 				// Customers
 				.state('customers', {
-					url: '/customers',
-					parent: 'root',
-					templateUrl: '/admin/partials/customer_list',
+					url: '/admin/customers',
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/customer_list',
+							controller: 'CustomerListCtrl'
+						}
+					},
 					resolve: {
 						customers: ['Customers', function(Customers) {
 							return Customers.getList().$object;
 						}]
 					}
 				})
-				.state('customers.edit', {
-					url: '/:id',
-					parent: 'customers',
-					templateUrl: '/admin/partials/customer_edit'
-				})
 				.state('customers.create', {
 					url: '/new',
 					parent: 'customers',
-					templateUrl: '/admin/partials/customer_edit'
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/customer_edit',
+							controller: 'CustomerEditCtrl'
+						}
+					},
+					resolve: {
+						customer: function() { return {}; }
+					}
+				})
+				.state('customers.edit', {
+					url: '/:customerId',
+					parent: 'customers',
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/customer_edit',
+							controller: 'CustomerEditCtrl'
+						}
+					},
+					resolve: {
+						customer: ['Customers', '$stateParams', function(Customers, $stateParams) {
+							return Customers.one($stateParams.customerId).get();
+						}]
+					}
 				})
 
 				// Tickets
 				.state('tickets', {
-					url: '/tickets',
-					parent: 'root',
-					templateUrl: '/admin/partials/ticket_list',
+					url: '/admin/tickets',
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/ticket_list',
+							controller: 'TicketListCtrl'
+						}
+					},
 					resolve: {
 						tickets: ['Tickets', function(Tickets) {
 							return Tickets.getList().$object;
 						}]
 					}
 				})
-				.state('tickets.edit', {
-					url: '/:id',
-					parent: 'tickets',
-					templateUrl: '/admin/partials/ticket_edit'
-				})
 				.state('tickets.create', {
 					url: '/new',
 					parent: 'tickets',
-					templateUrl: '/admin/partials/ticket_edit'
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/ticket_edit',
+							controller: 'TicketEditCtrl'
+						}
+					},
+					resolve: {
+						ticket: function() { return {}; }
+					}
+				})
+				.state('tickets.edit', {
+					url: '/:ticketId',
+					parent: 'tickets',
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/ticket_edit',
+							controller: 'TicketEditCtrl'
+						}
+					},
+					resolve: {
+						ticket: ['Tickets', '$stateParams', function(Tickets, $stateParams) {
+							Tickets.one($stateParams.ticketId).get();
+						}]
+					}
 				});
 
 		}

@@ -1,37 +1,36 @@
-div(ng-controller='CustomerEditCtrl')
-	.panel.panel-primary
-		.panel-heading Create or Edit a Customer
-		.panel-body
-			form(role='form')
-				.form-group
-					label(for='firstName') First Name
-					input.form-control(type='text', name='firstName', ng-model='customer.firstName')
-					label(for='lastName') Last Name
-					input.form-control(type='text', name='lastName', ng-model='customer.lastName')
-				.form-group
-					label(for='business') Business
-					input.form-control(type='text', name='business', ng-model='customer.business')
-				.form-grop
-					label(for='email') E-mail
-					input.form-control(type='email', name='email', ng-model='customer.email')
-				.form-group
-					label(for='address') Address
-					input.form-control(type='text', name='address', ng-model='customer.address')
-					label(for='city') City
-					input.form-control(type='text', name='city', ng-model='customer.city')
-					label(for='state') State
-					input.form-control(type='text', name='state', ng-model='customer.state', value='LA')
-					label(for='zipCode') Zip Code
-					input.form-control(type='text', name='zipCode', ng-model='customer.zipCode')
-				.form-group
-					label(for='phonePrimary') Primary Phone
-					input.form-control(type='text', name='phonePrimary', ng-model='customer.phonePrimary')
-					label(for='phoneSeconday') Secondary Phone
-					input.form-control(type='text', name='phoneSeconday', ng-model='customer.phoneSeconday')
-				.form-group
-					label(for='referredBy') Referred By
-					input.form-control(type='text', name='referredBy', ng-model='customer.referredBy')
-				.form-group
-					label(for='notes') Notes
-					textarea(name='notes', ng-model='customer.notes')
-
+.panel.panel-primary
+	.panel-heading Create or Edit a Customer
+	.panel-body
+		form(role='form')
+			.form-group
+				label(for='firstName') First Name
+				input.form-control(type='text', name='firstName', ng-model='customer.firstName')
+				label(for='lastName') Last Name
+				input.form-control(type='text', name='lastName', ng-model='customer.lastName')
+			.form-group
+				label(for='business') Business
+				input.form-control(type='text', name='business', ng-model='customer.business')
+			.form-grop
+				label(for='email') E-mail
+				input.form-control(type='email', name='email', ng-model='customer.email')
+			.form-group
+				label(for='address') Address
+				input.form-control(type='text', name='address', ng-model='customer.address')
+				label(for='city') City
+				input.form-control(type='text', name='city', ng-model='customer.city')
+				label(for='state') State
+				input.form-control(type='text', name='state', ng-model='customer.state', value='LA')
+				label(for='zipCode') Zip Code
+				input.form-control(type='text', name='zipCode', ng-model='customer.zipCode')
+			.form-group
+				label(for='phonePrimary') Primary Phone
+				input.form-control(type='text', name='phonePrimary', ng-model='customer.phonePrimary')
+				label(for='phoneSeconday') Secondary Phone
+				input.form-control(type='text', name='phoneSeconday', ng-model='customer.phoneSeconday')
+			.form-group
+				label(for='referredBy') Referred By
+				input.form-control(type='text', name='referredBy', ng-model='customer.referredBy')
+			.form-group
+				label(for='notes') Notes
+				textarea(name='notes', ng-model='customer.notes')
+			button.btn(type='submit')

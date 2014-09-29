@@ -7,4 +7,8 @@ TicketCtrl.list = ['tickets', '$scope', '$stateParams', function(tickets, $scope
 	$scope.tickets = tickets;
 }];
 
+TicketCtrl.edit = ['ticket', '$scope', '$stateParams', function(ticket, $scope, $stateParams) {
+	$scope.ticket = ticket;
+}];
+
 module.exports = TicketCtrl;

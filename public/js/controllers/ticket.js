@@ -3,20 +3,8 @@
 var TicketCtrl = {};
 
 /* List all tickets */
-TicketCtrl.list = ['Ticket', '$scope', '$stateParams', function(Ticket, $scope, $stateParams) {
-	var getTickets = function() {
-		Ticket.findAll(function(tickets) {
-			$scope.tickets = tickets;
-		}, function(err) {
-			console.log(err);
-		});
-	};
-
-	var init = function() {
-		getTickets();
-	};
-
-	init();
+TicketCtrl.list = ['tickets', '$scope', '$stateParams', function(tickets, $scope, $stateParams) {
+	$scope.tickets = tickets;
 }];
 
 module.exports = TicketCtrl;

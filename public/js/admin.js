@@ -5,14 +5,10 @@ require('./services/admin-resources');
 require('./controllers');
 
 angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
-	.constant('API_CONFIG', {
-		API_KEY: '',
-		BASE_URL: '/admin/api/v1/'
-	})
 	.run(['$rootScope', '$state', '$stateParams',
 		function($rootScope, $state, $stateParams) {
-			 $rootScope.$state = $state;
-			 $rootScope.$stateParams = $stateParams;
+			$rootScope.$state = $state;
+			$rootScope.$stateParams = $stateParams;
 		}
 	])
 	.config(['$locationProvider', '$urlRouterProvider', '$stateProvider',
@@ -30,53 +26,68 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 				})
 
 				// Users
-				.state('user', {
+				.state('users', {
 					url: '/users',
 					parent: 'root',
-					templateUrl: '/admin/partials/user_list'
+					templateUrl: '/admin/partials/user_list',
+					resolve: {
+						users: ['Users', function(Users) {
+							return Users.getList().$object;
+						}]
+					}
 				})
-				.state('user.edit', {
+				.state('users.edit', {
 					url: '/:id',
-					parent: 'user',
+					parent: 'users',
 					templateUrl: '/admin/partials/user_edit'
 				})
-				.state('user.create', {
+				.state('users.create', {
 					url: '/new',
-					parent: 'user',
+					parent: 'users',
 					templateUrl: '/admin/partials/user_edit'
 				})
 
 				// Customers
-				.state('customer', {
+				.state('customers', {
 					url: '/customers',
 					parent: 'root',
-					templateUrl: '/admin/partials/customer_list'
+					templateUrl: '/admin/partials/customer_list',
+					resolve: {
+						customers: ['Customers', function(Customers) {
+							return Customers.getList().$object;
+						}]
+					}
 				})
-				.state('customer.edit', {
+				.state('customers.edit', {
 					url: '/:id',
-					parent: 'customer',
+					parent: 'customers',
 					templateUrl: '/admin/partials/customer_edit'
 				})
-				.state('customer.create', {
+				.state('customers.create', {
 					url: '/new',
-					parent: 'customer',
+					parent: 'customers',
 					templateUrl: '/admin/partials/customer_edit'
 				})
 
 				// Tickets
-				.state('ticket', {
+				.state('tickets', {
 					url: '/tickets',
 					parent: 'root',
-					templateUrl: '/admin/partials/ticket_list'
+					templateUrl: '/admin/partials/ticket_list',
+					resolve: {
+						tickets: ['Tickets', function(Tickets) {
+							return Tickets.getList().$object;
+						}]
+					}
 				})
-				.state('ticket.edit', {
+				.state('tickets.edit', {
 					url: '/:id',
-					parent: 'ticket',
+					parent: 'tickets',
 					templateUrl: '/admin/partials/ticket_edit'
 				})
-				.state('ticket.create', {
+				.state('tickets.create', {
 					url: '/new',
-					parent: 'ticket',
+					parent: 'tickets',
 					templateUrl: '/admin/partials/ticket_edit'
 				});
 

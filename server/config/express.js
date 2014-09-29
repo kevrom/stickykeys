@@ -55,9 +55,9 @@ module.exports = function (app, express, passport) {
 		app.use(allowCrossDomain);
 	}
 
-	app.use(cookieParser('whoareyouandwhatareyoudoinghere'));
+	app.use(cookieParser(config.app.secret));
 	app.use(session({
-		secret: pkg.name,
+		secret: config.app.secret,
 		saveUninitialized: true,
 		resave: true,
 		store: new RedisStore()

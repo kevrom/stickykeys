@@ -13,7 +13,8 @@ config = {
 			name          : 'Steve Dev',
 			description   : pkg.description || '',
 			keywords      : pkg.keywords || [],
-			author        : pkg.author || ''
+			author        : pkg.author || '',
+			secret        : '6s56sd45g6s84gew684gs6d211v6ds5g4d46s'
 		},
 		server: {
 			port          : 8010,
@@ -65,7 +66,8 @@ config = {
 			name          : 'Steve Prod',
 			description   : pkg.description || '',
 			keywords      : pkg.keywords || [],
-			author        : pkg.author || ''
+			author        : pkg.author || '',
+			secret        : '4g6d8s4g6f4sd68fg4df6g84sd62f4g68r46dg846a'
 		},
 		server: {
 			port          : 8010,

@@ -1,7 +1,5 @@
 'use strict';
 
-var config = require('../config/config');
-
 module.exports = function(sequelize, DataTypes) {
 	var Ticket = sequelize.define('Ticket', {
 		id: {

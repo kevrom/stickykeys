@@ -3,7 +3,7 @@
 /*
 	UserProfile is used for information related the individual that owns User.
 	Personal information, flags, and things that aren't related to
-	the actual account of the User should be stored here.  Nothing here is
+	the actual account of the User should be stored here.  Nothing here is 
 	necessary to being a user.
 */
 module.exports = function(sequelize, DataTypes) {

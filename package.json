@@ -22,6 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.2.23",
+    "angular-socket-io": "^0.6.0",
     "angular-ui-router": "^0.2.10",
     "async": "^0.9.0",
     "bcrypt": "^0.8.0",
@@ -91,6 +92,6 @@
   "browserify-shim": {
     "jquery": "global:$",
     "angular": "global:angular",
-	"lodash": "global:_"
+    "lodash": "global:_"
   }
 }

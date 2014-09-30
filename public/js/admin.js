@@ -43,7 +43,7 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 						}
 					},
 					resolve: {
-						user: function() { return {}; }
+						user: ['Restangular', function(Restangular) { return Restangular.restangularizeElement(null, {}, 'users'); }]
 					}
 				})
 				.state('users.edit', {
@@ -87,7 +87,7 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 						}
 					},
 					resolve: {
-						customer: function() { return {}; }
+						customer: ['Restangular', function(Restangular) { return Restangular.restangularizeElement(null, {}, 'customers'); }]
 					}
 				})
 				.state('customers.edit', {
@@ -131,7 +131,7 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 						}
 					},
 					resolve: {
-						ticket: function() { return {}; }
+						ticket: ['Restangular', function(Restangular) { return Restangular.restangularizeElement(null, {}, 'tickets'); }]
 					}
 				})
 				.state('tickets.edit', {

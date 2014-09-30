@@ -1,6 +1,8 @@
 'use strict';
 
-var bcrypt   = require('bcrypt');
+var config      = require('../config/config');
+var bcrypt      = require('bcrypt');
+var UserProfile = require(config.root + '/server/models').UserProfile;
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
@@ -88,6 +90,16 @@ module.exports = function(sequelize, DataTypes) {
 					}
 				}
 				throw new Error('Role not found');
+			}
+		},
+		hooks: {
+			afterCreate: function(user, fn) {
+				this.associations.UserProfile.target.create()
+					.success(function(profile) {
+						profile.setUser(user);
+						user.setUserProfile(profile);
+					});
+				fn(null, user);
 			}
 		}
 	});

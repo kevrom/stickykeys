@@ -9,6 +9,10 @@ TicketCtrl.list = ['tickets', '$scope', '$stateParams', function(tickets, $scope
 
 TicketCtrl.edit = ['ticket', '$scope', '$stateParams', function(ticket, $scope, $stateParams) {
 	$scope.ticket = ticket;
+
+	$scope.save = function(ticket) {
+		ticket.save();
+	};
 }];
 
 module.exports = TicketCtrl;

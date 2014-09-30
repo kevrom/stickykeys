@@ -1,1 +1,31 @@
-p This is the ticket edit state
+.button-link
+	a.btn.btn-default(ui-sref='customers')
+		i.fa.fa-chevron-left
+		| &nbsp;Go Back
+.panel.panel-primary
+	.panel-heading Create or Edit a Ticket
+	.panel-body
+		form(role='form', name='ticketForm', ng-submit='save(ticket)')
+			.form-group
+				label(for='name') Name
+				input.form-control(type='text', name='name', ng-model='customer.name')
+			.form-group
+				label(for='email') E-mail
+				input.form-control(type='text', name='email', ng-model='customer.email')
+			.form-group
+				label(for='phone') Phone #
+				input.form-control(type='text', name='phone', ng-model='customer.phone')
+			.form-group
+				label(for='problem') Problem
+				textarea.form-control(name='problem', ng-model='customer.problem')
+			.form-group
+				label(for='labor') Labor performed
+				textarea.form-control(name='labor', ng-model='customer.labor')
+				label(for='laborPrice') Labor price
+				input.form-control(type='text', name='laborPrice', ng-model='customer.laborPrice')
+			.form-group
+				label(for='parts') Parts replaced
+				textarea.form-control(name='parts', ng-model='customer.parts')
+				label(for='partsPrice') Parts price
+				input.form-control(type='text', name='partsPrice', ng-model='customer.partsPrice')
+			button.btn.btn-default(type='submit') Save

@@ -1,7 +1,11 @@
+.button-link
+	a.btn.btn-default(ui-sref='customers')
+		i.fa.fa-chevron-left
+		| &nbsp;Go Back
 .panel.panel-primary
 	.panel-heading Create or Edit a Customer
 	.panel-body
-		form(role='form')
+		form(role='form', name='customerForm', ng-submit='save(customer)')
 			.form-group
 				label(for='firstName') First Name
 				input.form-control(type='text', name='firstName', ng-model='customer.firstName')
@@ -31,6 +35,6 @@
 				label(for='referredBy') Referred By
 				input.form-control(type='text', name='referredBy', ng-model='customer.referredBy')
 			.form-group
-				label(for='notes') Notes
-				textarea(name='notes', ng-model='customer.notes')
-			button.btn(type='submit')
+				label.sr-only(for='notes') Notes
+				textarea.form-control(name='notes', ng-model='customer.notes', placeholder='Customer notes')
+			button.btn.btn-default(type='submit') Save

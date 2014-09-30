@@ -1,11 +1,13 @@
 .button-link
-	a.btn.btn-default(ui-sref='users.create') Create a User
+	a.btn.btn-default(ui-sref='users.create')
+		i.fa.fa-user
+		| &nbsp;Create a User
 .panel.panel-primary(ng-repeat='user in users')
 	.panel-heading
 		a.edit-icon(ui-sref='users.edit({ userId: user.id })')
 			i.fa.fa-pencil-square-o(title='Edit')
-		| {{ user.name }}
+		| {{ user.email }}
 	.panel-body
-		p Email: {{ user.email }}
+		p Name: {{ user.name }}
 		p Roles: 
 			span(ng-repeat='role in user.roles') {{ role }} 

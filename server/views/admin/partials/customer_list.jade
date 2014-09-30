@@ -1,6 +1,11 @@
+.button-link
+	a.btn.btn-default(ui-sref='customers.create')
+		i.fa.fa-usd
+		| &nbsp;New Customer
 .panel.panel-primary(ng-repeat='customer in customers')
-	.panel-heading {{ customer.full_name }}
+	.panel-heading
+		a.edit-icon(ui-sref='customers.edit({ customerId: customer.id })')
+			i.fa.fa-pencil-square-o(title='Edit')
+		| {{ customer.fullName }}
 	.panel-body
-		p Email: {{ user.email }}
-		p Roles: 
-			span(ng-repeat='role in user.roles') {{ role }} 
+		p {{ customer }}

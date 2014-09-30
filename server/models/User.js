@@ -1,8 +1,6 @@
 'use strict';
 
-var bluebird = require('bluebird');
 var bcrypt   = require('bcrypt');
-var hash     = bluebird.promisify(bcrypt.hash);
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
@@ -43,7 +41,11 @@ module.exports = function(sequelize, DataTypes) {
 			defaultValue: false
 		}
 	}, {
-		classMethods: {},
+		classMethods: {
+			associate: function(models) {
+				User.hasOne(models.UserProfile);
+			}
+		},
 		instanceMethods: {
 			authenticate: function(plainText, cb) {
 				bcrypt.compare(plainText, this.hashedPassword, function(err, res) {

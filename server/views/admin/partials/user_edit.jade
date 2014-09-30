@@ -5,7 +5,7 @@
 .panel.panel-primary
 	.panel-heading Create or Edit a User
 	.panel-body
-		form(role='form')
+		form(role='form', name='userForm', ng-submit='save(user)', novalidate)
 			.form-group
 				label(for='name') Name
 				input.form-control(type='text', name='name', ng-model='user.name')

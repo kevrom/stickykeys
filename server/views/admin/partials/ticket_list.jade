@@ -1,3 +1,11 @@
-.panel(ng-repeat='ticket in tickets')
-	.panel-header {{ ticket.name }}
-	.panel-body {{ ticket.problem }}
+.button-link
+	a.btn.btn-default(ui-sref='tickets.create')
+		i.fa.fa-thumb-tack
+		| &nbsp;New Ticket
+.panel.panel-primary(ng-repeat='ticket in tickets')
+	.panel-heading
+		a.edit-icon(ui-sref='tickets.edit({ ticketId: ticket.id })')
+			i.fa.fa-pencil-square-o(title='Edit')
+		| {{ ticket.name }}
+	.panel-body
+		p {{ ticket }}

@@ -1,8 +1,8 @@
 'use strict';
 
 var angular = require('angular');
-require('./services/admin-resources');
 require('./controllers');
+require('./services');
 
 angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 	.run(['$rootScope', '$state', '$stateParams',
@@ -43,7 +43,9 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 						}
 					},
 					resolve: {
-						user: ['Restangular', function(Restangular) { return Restangular.restangularizeElement(null, {}, 'users'); }]
+						user: ['Restangular', function(Restangular) {
+							return Restangular.restangularizeElement(null, {}, 'users');
+						}]
 					}
 				})
 				.state('users.edit', {
@@ -87,15 +89,17 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 						}
 					},
 					resolve: {
-						customer: ['Restangular', function(Restangular) { return Restangular.restangularizeElement(null, {}, 'customers'); }]
+						customer: ['Restangular', function(Restangular) {
+							return Restangular.restangularizeElement(null, {}, 'customers');
+						}]
 					}
 				})
-				.state('customers.edit', {
+				.state('customers.view', {
 					url: '/:customerId',
 					parent: 'customers',
 					views: {
 						'@': {
-							templateUrl: '/admin/partials/customer_edit',
+							templateUrl: '/admin/partials/customer_view',
 							controller: 'CustomerEditCtrl'
 						}
 					},
@@ -103,6 +107,16 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 						customer: ['Customers', '$stateParams', function(Customers, $stateParams) {
 							return Customers.one($stateParams.customerId).get();
 						}]
+					}
+				})
+				.state('customers.view.edit', {
+					url: '/edit',
+					parent: 'customers.view',
+					views: {
+						'@': {
+							templateUrl: '/admin/partials/customer_edit',
+							controller: 'CustomerEditCtrl'
+						}
 					}
 				})
 
@@ -131,7 +145,9 @@ angular.module('admin', ['ui.router', 'admin.resources', 'admin.controllers'])
 						}
 					},
 					resolve: {
-						ticket: ['Restangular', function(Restangular) { return Restangular.restangularizeElement(null, {}, 'tickets'); }]
+						ticket: ['Restangular', function(Restangular) {
+							return Restangular.restangularizeElement(null, {}, 'tickets');
+						}]
 					}
 				})
 				.state('tickets.edit', {

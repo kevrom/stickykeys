@@ -1,0 +1,16 @@
+.button-link
+	a.btn.btn-default(ui-sref='customers')
+		i.fa.fa-chevron-left
+		| &nbsp;Go Back
+.panel.panel-primary
+	.panel-heading
+		a.edit-icon(ui-sref='customers.view.edit({ customerId: customer.id })')
+			i.fa.fa-pencil-square-o(title='Edit')
+		| {{ customer.fullName }}
+	.panel-body
+		p {{ customer }}
+		p {{ customer.address }}
+		p(ng-if='customer.city') {{ customer.city }}, {{ customer.state }} {{ customer.zipCode }}
+		p {{ customer.phonePrimary }} / {{ customer.phoneSeconday }}
+		p Referred by: {{ customer.referredBy }}
+		p Customer notes: {{ customer.notes }}

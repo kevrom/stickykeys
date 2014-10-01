@@ -8,24 +8,24 @@
 		form(role='form', name='ticketForm', ng-submit='save(ticket)')
 			.form-group
 				label(for='name') Name
-				input.form-control(type='text', name='name', ng-model='customer.name')
+				input.form-control(type='text', name='name', ng-model='ticket.name')
 			.form-group
 				label(for='email') E-mail
-				input.form-control(type='text', name='email', ng-model='customer.email')
+				input.form-control(type='text', name='email', ng-model='ticket.email')
 			.form-group
 				label(for='phone') Phone #
-				input.form-control(type='text', name='phone', ng-model='customer.phone')
+				input.form-control(type='text', name='phone', ng-model='ticket.phone')
 			.form-group
 				label(for='problem') Problem
-				textarea.form-control(name='problem', ng-model='customer.problem')
+				textarea.form-control(name='problem', ng-model='ticket.problem')
 			.form-group
 				label(for='labor') Labor performed
-				textarea.form-control(name='labor', ng-model='customer.labor')
+				textarea.form-control(name='labor', ng-model='ticket.labor')
 				label(for='laborPrice') Labor price
-				input.form-control(type='text', name='laborPrice', ng-model='customer.laborPrice')
+				input.form-control(type='text', name='laborPrice', ng-model='ticket.laborPrice')
 			.form-group
 				label(for='parts') Parts replaced
-				textarea.form-control(name='parts', ng-model='customer.parts')
+				textarea.form-control(name='parts', ng-model='ticket.parts')
 				label(for='partsPrice') Parts price
-				input.form-control(type='text', name='partsPrice', ng-model='customer.partsPrice')
+				input.form-control(type='text', name='partsPrice', ng-model='ticket.partsPrice')
 			button.btn.btn-default(type='submit') Save

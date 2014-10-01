@@ -1,3 +1,3 @@
 'use strict';
 
-require('./api-resource.js');
+require('./admin-resources.js');

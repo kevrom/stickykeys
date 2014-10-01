@@ -4,8 +4,8 @@
 		| &nbsp;New Customer
 .panel.panel-primary(ng-repeat='customer in customers')
 	.panel-heading
-		a.edit-icon(ui-sref='customers.edit({ customerId: customer.id })')
-			i.fa.fa-pencil-square-o(title='Edit')
-		| {{ customer.fullName }}
+		//-a.edit-icon(ui-sref='customers.edit({ customerId: customer.id })')
+			//-i.fa.fa-pencil-square-o(title='Edit')
+		a(ui-sref='customers.view({ customerId: customer.id })') {{ customer.fullName }}
 	.panel-body
 		p {{ customer }}

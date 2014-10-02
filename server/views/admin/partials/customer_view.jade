@@ -10,7 +10,13 @@
 	.panel-body
 		p {{ customer }}
 		p {{ customer.address }}
-		p(ng-if='customer.city') {{ customer.city }}, {{ customer.state }} {{ customer.zipCode }}
-		p {{ customer.phonePrimary }} / {{ customer.phoneSeconday }}
+		p(ng-if='(customer.city != null) && (customer.state != null) && (customer.zipCode != null)')
+			span {{ customer.city }}
+			span(ng-if='(customer.city != null) && (customer.state != null)') ,
+			span {{ customer.state }}
+			span &nbsp;{{ customer.zipCode }}
+		p(ng-if='(customer.phonePrimary != null) && (customer.phoneSecondary != null)')
+			span {{ customer.phonePrimary }}
+			span(ng-if='customer.phoneSecondary != null') &nbsp;/ {{ customer.phoneSeconday }}
 		p Referred by: {{ customer.referredBy }}
 		p Customer notes: {{ customer.notes }}

@@ -62,7 +62,7 @@ gulp.task('scripts', function() {
 	});
 	return gulp.src(['./public/js/main.js', './public/js/admin.js'])
 		.pipe(browserified)
-		.pipe(gulp.dest('./dist/bundles/'));
+		.pipe(gulp.dest('./dist/js/'));
 });
 
 

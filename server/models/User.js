@@ -1,7 +1,6 @@
 'use strict';
 
-var config      = require('../config/config');
-var bcrypt      = require('bcrypt');
+var bcrypt  = require('bcryptjs');
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
@@ -57,11 +56,10 @@ module.exports = function(sequelize, DataTypes) {
 				});
 			},
 			hashPassword: function(plainText, cb) {
-				var self = this;
 				var salt = bcrypt.genSaltSync(10);
 				var hash = bcrypt.hashSync(plainText, salt);
-				self.hashedPassword = hash;
-				return self;
+				this.hashed_password = hash;
+				return this;
 			},
 			getRoles: function() {
 				return this.roles;

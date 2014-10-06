@@ -64,8 +64,7 @@
     "winston": "^0.7.3"
   },
   "devDependencies": {
-    "browserify": "^5.12.1",
-    "browserify-shim": "^3.7.0",
+    "browserify": "^6.0.2",
     "chai": "^1.9.1",
     "gulp": "^3.8.6",
     "gulp-concat": "^2.3.3",
@@ -79,6 +78,7 @@
     "gulp-sourcemaps": "^1.1.0",
     "gulp-uglify": "^0.3.1",
     "jshint-stylish": "^0.4.0",
+    "merge-stream": "^0.1.6",
     "mocha": "^1.18.2",
     "node-notifier": "^3.0.6",
     "run-sequence": "^0.3.6",

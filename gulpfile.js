@@ -1,8 +1,10 @@
 'use strict';
 
 var gulp         = require('gulp');
-var browserify   = require('browserify');
 var transform    = require('vinyl-transform');
+var browserify   = require('browserify');
+var merge        = require('merge-stream');
+var concat       = require('gulp-concat');
 var imagemin     = require('gulp-imagemin');
 var jshint       = require('gulp-jshint');
 var uglify       = require('gulp-uglify');
@@ -81,47 +83,36 @@ gulp.task('fonts', function() {
 });
 
 
-// Bootstrap assets
-gulp.task('bootstrap-css', function() {
-	return gulp.src('./node_modules/bootstrap-sass/assets/stylesheets/bootstrap/bootstrap.scss')
-		.pipe(sass({
-			style: 'expanded'
-		}))
-		.pipe(gulp.dest(paths.build + '/lib/bootstrap'));
-});
-gulp.task('bootstrap-js', function() {
-	return gulp.src('./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js')
-		.pipe(gulp.dest(paths.build + '/lib/bootstrap'));
-});
-gulp.task('bootstrap', ['bootstrap-js', 'bootstrap-css']);
+// Vendor scripts and assets
+gulp.task('vendor', function() {
+	var bootstrap   = {};
+	var fontawesome = {};
+	var jquery, socketio;
 
+	bootstrap.sass = gulp.src('./node_modules/bootstrap-sass/assets/stylesheets/bootstrap/bootstrap.scss')
+		.pipe(sass({ style: 'expanded' }))
+		.pipe(gulp.dest(paths.build + '/vendor/bootstrap'));
 
-// Font Awesome
-gulp.task('fontawesome-css', function() {
-	return gulp.src('./public/lib/font-awesome.scss')
-		.pipe(sass({
-			style: 'expanded'
-		}))
+	bootstrap.js = gulp.src('./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js')
+		.pipe(gulp.dest(paths.build + '/vendor/bootstrap'));
+
+	fontawesome.sass = gulp.src('./public/sass/font-awesome.scss')
+		.pipe(sass({ style: 'expanded' }))
 		.pipe(minifyCss())
-		.pipe(gulp.dest(paths.build + '/lib/font-awesome'));
-});
-gulp.task('fontawesome-fonts', function() {
-	return gulp.src('./node_modules/font-awesome/fonts/*')
-		.pipe(gulp.dest(paths.build + '/lib/font-awesome'));
+		.pipe(gulp.dest(paths.build + '/vendor/font-awesome'));
+
+	fontawesome.fonts = gulp.src('./node_modules/font-awesome/fonts/*')
+		.pipe(gulp.dest(paths.build + '/vendor/font-awesome'));
+
+	jquery = gulp.src('./node_modules/jquery/dist/jquery.js')
+		.pipe(gulp.dest(paths.build + '/vendor/jquery'));
+
+	socketio = gulp.src('./node_modules/socket.io-client/socket.io.js')
+		.pipe(gulp.dest(paths.build + '/vendor/socket.io'));
+
+	return merge(bootstrap.sass, bootstrap.js, fontawesome.sass, fontawesome.fonts, jquery, socketio);
 });
 
-
-// jQuery
-gulp.task('jquery', function() {
-	return gulp.src('./node_modules/jquery/dist/jquery.js')
-		.pipe(gulp.dest(paths.build + '/lib/jquery'));
-});
-
-// Socket.IO
-gulp.task('socket.io', function() {
-	return gulp.src('./node_modules/socket.io-client/socket.io.js')
-		.pipe(gulp.dest(paths.build + '/lib/socket.io'));
-});
 
 
 // Watch function
@@ -156,13 +147,9 @@ gulp.task('build', function() {
 		[
 			'lint',
 			'scripts',
-			'jquery',
-			'bootstrap',
-			'fontawesome-css',
-			'fontawesome-fonts',
-			'socket.io',
 			'styles',
-			'images'
+			'images',
+			'vendor'
 		]);
 });
 
@@ -175,13 +162,9 @@ gulp.task('default', function() {
 		[
 			'lint',
 			'scripts',
-			'jquery',
-			'bootstrap',
-			'fontawesome-css',
-			'fontawesome-fonts',
-			'socket.io',
 			'styles',
-			'images'
+			'images',
+			'vendor'
 		],
 
 		// start dev server

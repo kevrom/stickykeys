@@ -2,7 +2,6 @@
 
 var config      = require('../config/config');
 var bcrypt      = require('bcrypt');
-var UserProfile = require(config.root + '/server/models').UserProfile;
 
 module.exports = function(sequelize, DataTypes) {
 	var User = sequelize.define('User', {
